@@ -84,6 +84,21 @@ export default function TestTyping() {
     }
   };
 
+  // After reveal, Enter advances to next question even though the input is disabled
+  // (input loses focus when disabled, so we use a window-level listener).
+  useEffect(() => {
+    if (stage !== "running" || !revealed) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        next();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage, revealed, idx, questions.length]);
+
   const finishRun = () => {
     const correctCount = results.filter((r) => r.correct).length;
     const avg = results.length > 0
@@ -210,6 +225,10 @@ export default function TestTyping() {
                       {direction === "kanji-to-arti" ? r.word.arti : r.word.kanji}
                     </span>
                   </div>
+                  <div className="text-neutral-500">
+                    Romaji:{" "}
+                    <span className="font-medium text-neutral-300">{r.word.romaji}</span>
+                  </div>
                   {!r.correct && (
                     <div className="text-rose-300/80">
                       Jawabanmu: {r.given || "(kosong)"}
@@ -316,7 +335,7 @@ export default function TestTyping() {
         />
 
         {revealed && (
-          <div className="text-sm">
+          <div className="space-y-2 text-sm">
             {results[results.length - 1]?.correct ? (
               <span className="text-emerald-300">Benar! 🎉</span>
             ) : (
@@ -327,6 +346,21 @@ export default function TestTyping() {
                 </span>
               </span>
             )}
+            <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+              <div className="text-xs uppercase tracking-wider text-neutral-500">
+                Detail jawaban
+              </div>
+              <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className="text-jp text-xl font-semibold text-neutral-100">
+                  {word.kanji}
+                </span>
+                <span className="text-sm text-neutral-300">{word.romaji}</span>
+                <span className="text-sm text-neutral-400">— {word.arti}</span>
+              </div>
+            </div>
+            <p className="text-xs text-neutral-500">
+              Tekan Enter untuk soal berikutnya.
+            </p>
           </div>
         )}
 

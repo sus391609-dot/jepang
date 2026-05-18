@@ -137,6 +137,20 @@ export default function TestSentence() {
     }
   };
 
+  // Enter to advance to next question after the answer is revealed
+  useEffect(() => {
+    if (stage !== "running" || !revealed) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        next();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage, revealed, idx, questions.length]);
+
   if (stage === "config") {
     return (
       <div className="space-y-6">
@@ -342,19 +356,19 @@ export default function TestSentence() {
                   <span className="text-neutral-400">#{i + 1}</span>
                   <span className="text-neutral-100">{r.sentence.arti}</span>
                 </div>
-                <div className="mt-2 text-xs text-neutral-400">
-                  Benar:{" "}
-                  <span
-                    className={
-                      mode === "arti-to-kanji"
-                        ? "text-jp text-neutral-100"
-                        : "text-neutral-100"
-                    }
-                  >
-                    {mode === "arti-to-kanji"
-                      ? r.sentence.kanji
-                      : r.sentence.romaji}
-                  </span>
+                <div className="mt-2 space-y-1 text-xs text-neutral-400">
+                  <div>
+                    Kanji:{" "}
+                    <span className="text-jp font-medium text-neutral-100">
+                      {r.sentence.kanji}
+                    </span>
+                  </div>
+                  <div>
+                    Romaji:{" "}
+                    <span className="font-medium text-neutral-200">
+                      {r.sentence.romaji}
+                    </span>
+                  </div>
                 </div>
                 {!r.correct && (
                   <div className="mt-1 text-xs text-rose-300/70">
@@ -551,20 +565,34 @@ export default function TestSentence() {
       </div>
 
       {revealed && (
-        <div className="jp-card rounded-2xl p-4 text-sm">
+        <div className="jp-card space-y-3 rounded-2xl p-4 text-sm">
           {results[results.length - 1]?.correct ? (
             <p className="text-emerald-300">Benar! 🎉</p>
           ) : (
-            <div className="space-y-1 text-rose-300">
-              <p>Belum tepat.</p>
-              <p>
-                Yang benar:{" "}
-                <span className={isJp ? "text-jp font-medium text-neutral-100" : "font-medium text-neutral-100"}>
-                  {mode === "arti-to-kanji" ? q.kanji : q.romaji}
-                </span>
-              </p>
-            </div>
+            <p className="text-rose-300">Belum tepat.</p>
           )}
+          <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+            <div className="text-xs uppercase tracking-wider text-neutral-500">
+              Jawaban benar
+            </div>
+            <div className="mt-1 space-y-1">
+              <div>
+                <span className="text-xs text-neutral-500">Kanji: </span>
+                <span className="text-jp font-medium text-neutral-100">{q.kanji}</span>
+              </div>
+              <div>
+                <span className="text-xs text-neutral-500">Romaji: </span>
+                <span className="font-medium text-neutral-200">{q.romaji}</span>
+              </div>
+              <div>
+                <span className="text-xs text-neutral-500">Arti: </span>
+                <span className="text-neutral-300">{q.arti}</span>
+              </div>
+            </div>
+          </div>
+          <p className="text-xs text-neutral-500">
+            Tekan Enter untuk soal berikutnya.
+          </p>
         </div>
       )}
 

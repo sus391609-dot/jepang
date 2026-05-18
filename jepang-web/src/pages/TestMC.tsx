@@ -108,6 +108,20 @@ export default function TestMC() {
     }
   };
 
+  // Enter to advance to next question after answer is revealed
+  useEffect(() => {
+    if (stage !== "running" || !revealed) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        next();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stage, revealed, idx, questions.length]);
+
   const finishRun = () => {
     const correctCount = results.filter((r) => r.correct).length;
     const avg = results.length > 0
@@ -155,6 +169,7 @@ export default function TestMC() {
         revealLabel="Arti benar"
         getReveal={(w) => (direction === "kanji-to-arti" ? w.arti : w.kanji)}
         getPrompt={(w) => (direction === "kanji-to-arti" ? w.kanji : w.arti)}
+        getRomaji={(w) => w.romaji}
       />
     );
   }
@@ -237,6 +252,24 @@ export default function TestMC() {
           );
         })}
       </div>
+
+      {revealed && (
+        <div className="jp-card rounded-2xl p-4 text-sm">
+          <div className="text-xs uppercase tracking-wider text-neutral-500">
+            Jawaban benar
+          </div>
+          <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span className="text-jp text-2xl font-semibold text-neutral-100">
+              {q.word.kanji}
+            </span>
+            <span className="text-base text-neutral-300">{q.word.romaji}</span>
+            <span className="text-base text-neutral-400">— {q.word.arti}</span>
+          </div>
+          <p className="mt-2 text-xs text-neutral-500">
+            Tekan Enter untuk soal berikutnya.
+          </p>
+        </div>
+      )}
 
       <div className="flex items-center justify-between">
         <button
@@ -341,6 +374,7 @@ function ResultView({
   revealLabel,
   getReveal,
   getPrompt,
+  getRomaji,
 }: {
   title: string;
   results: {
@@ -354,6 +388,7 @@ function ResultView({
   revealLabel: string;
   getReveal: (w: FlatVocabItem) => string;
   getPrompt: (w: FlatVocabItem) => string;
+  getRomaji: (w: FlatVocabItem) => string;
 }) {
   const total = results.length;
   const correct = results.filter((r) => r.correct).length;
@@ -411,6 +446,10 @@ function ResultView({
                 <div>
                   {revealLabel}:{" "}
                   <span className="font-medium text-neutral-100">{getReveal(r.word)}</span>
+                </div>
+                <div className="text-neutral-500">
+                  Romaji:{" "}
+                  <span className="font-medium text-neutral-300">{getRomaji(r.word)}</span>
                 </div>
                 {!r.correct && r.chosen && (
                   <div className="text-rose-300/80">Jawaban kamu: {r.chosen}</div>
