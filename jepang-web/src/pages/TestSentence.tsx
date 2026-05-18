@@ -154,7 +154,7 @@ export default function TestSentence() {
           </p>
         </header>
 
-        <div className="jp-card grid grid-cols-1 gap-4 rounded-2xl p-5 md:grid-cols-4">
+        <div className="jp-card grid grid-cols-1 gap-4 rounded-2xl p-5 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="mb-2 text-xs uppercase tracking-wider text-neutral-500">
               Level kesulitan
@@ -488,7 +488,7 @@ export default function TestSentence() {
       </div>
 
       {/* Arrangement area */}
-      <div className="jp-card min-h-[110px] rounded-2xl p-4">
+      <div className="jp-card min-h-28 rounded-2xl p-4">
         <div className="mb-2 text-xs uppercase tracking-wider text-neutral-500">
           Susunanmu
         </div>

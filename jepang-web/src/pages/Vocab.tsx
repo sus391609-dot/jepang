@@ -226,7 +226,7 @@ function SectionPage({
               key={i}
               type="button"
               onClick={() => goPage(i)}
-              className={`h-8 min-w-[2rem] rounded-md text-xs ${
+              className={`h-8 min-w-8 rounded-md text-xs ${
                 i === pageIndex
                   ? "bg-white text-neutral-900"
                   : "border border-white/10 text-neutral-300 hover:bg-white/5"

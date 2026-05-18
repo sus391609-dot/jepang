@@ -276,8 +276,8 @@ export default function TestTyping() {
           <span
             className={
               direction === "kanji-to-arti"
-                ? "text-jp text-5xl font-semibold leading-tight md:text-6xl"
-                : "text-2xl font-medium leading-snug md:text-3xl"
+                ? "text-jp text-4xl font-semibold leading-tight sm:text-5xl md:text-6xl"
+                : "text-xl font-medium leading-snug sm:text-2xl md:text-3xl"
             }
           >
             {direction === "kanji-to-arti" ? word.kanji : word.arti}
