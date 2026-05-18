@@ -4,6 +4,8 @@
 // "romajiTokens" is the canonical word order in romaji (used for romaji mode).
 // "vocabKanji" lists the main vocab kanji words used (used to match against user-selected pages).
 
+import { GENERATED_SENTENCES } from "./generatedSentences";
+
 export interface SentenceItem {
   id: string;
   level: 1 | 2 | 3 | 4 | 5;
@@ -15,7 +17,7 @@ export interface SentenceItem {
   vocabKanji: string[];
 }
 
-export const SENTENCES: SentenceItem[] = [
+export const CURATED_SENTENCES: SentenceItem[] = [
   // ===== LEVEL 1: Very simple (2-4 tokens) =====
   {
     id: "L1-001",
@@ -1025,6 +1027,14 @@ export const SENTENCES: SentenceItem[] = [
     romajiTokens: ["tonari", "no", "hito", "ga", "urusai", "kara", "shuuchuu", "dekimasen"],
     vocabKanji: ["隣", "人", "うるさい"],
   },
+];
+
+// Public combined list: curated + auto-generated sentences.
+// The auto-generated ones are produced by `scripts/generate-sentences.mjs`
+// from curated vocab pools so the test rotates through many items.
+export const SENTENCES: SentenceItem[] = [
+  ...CURATED_SENTENCES,
+  ...GENERATED_SENTENCES,
 ];
 
 export function sentencesByLevel(level: 1 | 2 | 3 | 4 | 5): SentenceItem[] {

@@ -1,5 +1,5 @@
 // Auto-generated from vocabulary source. Do not edit manually.
-// Total words: 1359
+// Total words: 1529
 export interface VocabItem {
   kanji: string;
   romaji: string;
@@ -21,7 +21,7 @@ export interface VocabSection {
   pages: VocabPage[];
 }
 
-export const TOTAL_WORDS = 1359;
+export const TOTAL_WORDS = 1529;
 
 export const VOCAB_SECTIONS: VocabSection[] = [
   {
@@ -8521,8 +8521,1067 @@ export const VOCAB_SECTIONS: VocabSection[] = [
         ]
       }
     ]
+  },
+  {
+    "id": "kosakata-n4-tambahan",
+    "label": "Kosakata Tambahan N4",
+    "slug": "n4-extra",
+    "emoji": "🎯",
+    "totalWords": 170,
+    "pages": [
+      {
+        "pageIndex": 0,
+        "items": [
+          {
+            "kanji": "上がる",
+            "romaji": "agaru",
+            "arti": "naik (intransitif)",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "下がる",
+            "romaji": "sagaru",
+            "arti": "turun (intransitif)",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "上げる",
+            "romaji": "ageru",
+            "arti": "menaikkan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "下げる",
+            "romaji": "sageru",
+            "arti": "menurunkan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "集まる",
+            "romaji": "atsumaru",
+            "arti": "berkumpul",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "集める",
+            "romaji": "atsumeru",
+            "arti": "mengumpulkan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "別れる",
+            "romaji": "wakareru",
+            "arti": "berpisah",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "続く",
+            "romaji": "tsuzuku",
+            "arti": "berlanjut",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "続ける",
+            "romaji": "tsuzukeru",
+            "arti": "melanjutkan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "始まる",
+            "romaji": "hajimaru",
+            "arti": "dimulai (intransitif)",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "探す",
+            "romaji": "sagasu",
+            "arti": "mencari",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "見つける",
+            "romaji": "mitsukeru",
+            "arti": "menemukan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "見つかる",
+            "romaji": "mitsukaru",
+            "arti": "ditemukan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "受ける",
+            "romaji": "ukeru",
+            "arti": "menerima / mengikuti (ujian)",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "渡す",
+            "romaji": "watasu",
+            "arti": "menyerahkan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "落ちる",
+            "romaji": "ochiru",
+            "arti": "jatuh",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "落とす",
+            "romaji": "otosu",
+            "arti": "menjatuhkan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "倒れる",
+            "romaji": "taoreru",
+            "arti": "rubuh / tumbang",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "起こす",
+            "romaji": "okosu",
+            "arti": "membangunkan / menyebabkan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "注意する",
+            "romaji": "chuui suru",
+            "arti": "memperhatikan / berhati-hati",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "心配する",
+            "romaji": "shinpai suru",
+            "arti": "khawatir",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "案内する",
+            "romaji": "annai suru",
+            "arti": "memandu / mengantar",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "紹介する",
+            "romaji": "shoukai suru",
+            "arti": "memperkenalkan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "招待する",
+            "romaji": "shoutai suru",
+            "arti": "mengundang",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "反対する",
+            "romaji": "hantai suru",
+            "arti": "menentang",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "賛成する",
+            "romaji": "sansei suru",
+            "arti": "setuju",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "比較する",
+            "romaji": "hikaku suru",
+            "arti": "membandingkan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "経験する",
+            "romaji": "keiken suru",
+            "arti": "mengalami",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "注文する",
+            "romaji": "chuumon suru",
+            "arti": "memesan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "出発する",
+            "romaji": "shuppatsu suru",
+            "arti": "berangkat",
+            "subcategory": "N4 - Kata Kerja"
+          }
+        ]
+      },
+      {
+        "pageIndex": 1,
+        "items": [
+          {
+            "kanji": "到着する",
+            "romaji": "touchaku suru",
+            "arti": "tiba",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "引っ越す",
+            "romaji": "hikkosu",
+            "arti": "pindah rumah",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "建てる",
+            "romaji": "tateru",
+            "arti": "membangun",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "寄る",
+            "romaji": "yoru",
+            "arti": "mampir",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "通る",
+            "romaji": "tooru",
+            "arti": "lewat",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "通う",
+            "romaji": "kayou",
+            "arti": "pulang pergi (rutin)",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "戻る",
+            "romaji": "modoru",
+            "arti": "kembali",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "戻す",
+            "romaji": "modosu",
+            "arti": "mengembalikan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "直す",
+            "romaji": "naosu",
+            "arti": "memperbaiki",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "直る",
+            "romaji": "naoru",
+            "arti": "diperbaiki / sembuh",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "飾る",
+            "romaji": "kazaru",
+            "arti": "menghias",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "残る",
+            "romaji": "nokoru",
+            "arti": "tersisa",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "残す",
+            "romaji": "nokosu",
+            "arti": "menyisakan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "増える",
+            "romaji": "fueru",
+            "arti": "bertambah",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "増やす",
+            "romaji": "fuyasu",
+            "arti": "menambah",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "減る",
+            "romaji": "heru",
+            "arti": "berkurang",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "減らす",
+            "romaji": "herasu",
+            "arti": "mengurangi",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "変える",
+            "romaji": "kaeru",
+            "arti": "mengubah",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "変わる",
+            "romaji": "kawaru",
+            "arti": "berubah",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "比べる",
+            "romaji": "kuraberu",
+            "arti": "membandingkan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "決める",
+            "romaji": "kimeru",
+            "arti": "memutuskan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "決まる",
+            "romaji": "kimaru",
+            "arti": "ditentukan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "伝える",
+            "romaji": "tsutaeru",
+            "arti": "menyampaikan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "伝わる",
+            "romaji": "tsutawaru",
+            "arti": "tersampaikan",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "気がつく",
+            "romaji": "ki ga tsuku",
+            "arti": "menyadari",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "役に立つ",
+            "romaji": "yaku ni tatsu",
+            "arti": "berguna",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "間に合う",
+            "romaji": "ma ni au",
+            "arti": "tepat waktu",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "遅れる",
+            "romaji": "okureru",
+            "arti": "terlambat",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "急ぐ",
+            "romaji": "isogu",
+            "arti": "bergegas",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "叱る",
+            "romaji": "shikaru",
+            "arti": "memarahi",
+            "subcategory": "N4 - Kata Kerja"
+          }
+        ]
+      },
+      {
+        "pageIndex": 2,
+        "items": [
+          {
+            "kanji": "褒める",
+            "romaji": "homeru",
+            "arti": "memuji",
+            "subcategory": "N4 - Kata Kerja"
+          },
+          {
+            "kanji": "教育",
+            "romaji": "kyouiku",
+            "arti": "pendidikan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "科学",
+            "romaji": "kagaku",
+            "arti": "ilmu pengetahuan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "技術",
+            "romaji": "gijutsu",
+            "arti": "teknik / teknologi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "内容",
+            "romaji": "naiyou",
+            "arti": "isi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "関係",
+            "romaji": "kankei",
+            "arti": "hubungan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "目標",
+            "romaji": "mokuhyou",
+            "arti": "target",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "予約",
+            "romaji": "yoyaku",
+            "arti": "reservasi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "相談",
+            "romaji": "soudan",
+            "arti": "konsultasi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "説明書",
+            "romaji": "setsumeisho",
+            "arti": "buku panduan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "机の上",
+            "romaji": "tsukue no ue",
+            "arti": "di atas meja",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "席",
+            "romaji": "seki",
+            "arti": "tempat duduk",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "手袋",
+            "romaji": "tebukuro",
+            "arti": "sarung tangan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "スーツ",
+            "romaji": "suutsu",
+            "arti": "jas",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "ジーンズ",
+            "romaji": "jiinzu",
+            "arti": "celana jeans",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "ハンカチ",
+            "romaji": "hankachi",
+            "arti": "sapu tangan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "ティッシュ",
+            "romaji": "tisshu",
+            "arti": "tisu",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "タオル",
+            "romaji": "taoru",
+            "arti": "handuk",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "歯ブラシ",
+            "romaji": "haburashi",
+            "arti": "sikat gigi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "石鹸",
+            "romaji": "sekken",
+            "arti": "sabun",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "交通",
+            "romaji": "koutsuu",
+            "arti": "lalu lintas",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "林",
+            "romaji": "hayashi",
+            "arti": "rimba kecil",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "畑",
+            "romaji": "hatake",
+            "arti": "ladang",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "田んぼ",
+            "romaji": "tanbo",
+            "arti": "sawah",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "景色",
+            "romaji": "keshiki",
+            "arti": "pemandangan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "性格",
+            "romaji": "seikaku",
+            "arti": "watak / karakter",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "最近",
+            "romaji": "saikin",
+            "arti": "akhir-akhir ini",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "最後",
+            "romaji": "saigo",
+            "arti": "terakhir",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "最初",
+            "romaji": "saisho",
+            "arti": "pertama / awal",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "途中",
+            "romaji": "tochuu",
+            "arti": "di tengah jalan",
+            "subcategory": "N4 - Kata Benda"
+          }
+        ]
+      },
+      {
+        "pageIndex": 3,
+        "items": [
+          {
+            "kanji": "途中で",
+            "romaji": "tochuu de",
+            "arti": "saat di tengah jalan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "うれしい",
+            "romaji": "ureshii",
+            "arti": "senang / gembira",
+            "subcategory": "N4 - Kata Sifat"
+          },
+          {
+            "kanji": "懐かしい",
+            "romaji": "natsukashii",
+            "arti": "rindu (akan masa lalu)",
+            "subcategory": "N4 - Kata Sifat"
+          },
+          {
+            "kanji": "眠い",
+            "romaji": "nemui",
+            "arti": "mengantuk",
+            "subcategory": "N4 - Kata Sifat"
+          },
+          {
+            "kanji": "かゆい",
+            "romaji": "kayui",
+            "arti": "gatal",
+            "subcategory": "N4 - Kata Sifat"
+          },
+          {
+            "kanji": "珍しい",
+            "romaji": "mezurashii",
+            "arti": "langka / jarang",
+            "subcategory": "N4 - Kata Sifat"
+          },
+          {
+            "kanji": "細かい",
+            "romaji": "komakai",
+            "arti": "rinci / detail",
+            "subcategory": "N4 - Kata Sifat"
+          },
+          {
+            "kanji": "深い",
+            "romaji": "fukai",
+            "arti": "dalam",
+            "subcategory": "N4 - Kata Sifat"
+          },
+          {
+            "kanji": "浅い",
+            "romaji": "asai",
+            "arti": "dangkal",
+            "subcategory": "N4 - Kata Sifat"
+          },
+          {
+            "kanji": "十分",
+            "romaji": "juubun",
+            "arti": "cukup (na-adj)",
+            "subcategory": "N4 - Kata Sifat"
+          },
+          {
+            "kanji": "なかなか",
+            "romaji": "nakanaka",
+            "arti": "cukup / tidak mudah",
+            "subcategory": "N4 - Kata Keterangan"
+          },
+          {
+            "kanji": "決して",
+            "romaji": "kesshite",
+            "arti": "sama sekali (tidak)",
+            "subcategory": "N4 - Kata Keterangan"
+          },
+          {
+            "kanji": "別に",
+            "romaji": "betsu ni",
+            "arti": "tidak juga",
+            "subcategory": "N4 - Kata Keterangan"
+          },
+          {
+            "kanji": "けれども",
+            "romaji": "keredomo",
+            "arti": "tetapi",
+            "subcategory": "N4 - Kata Sambung"
+          },
+          {
+            "kanji": "周り",
+            "romaji": "mawari",
+            "arti": "sekeliling",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "真ん中",
+            "romaji": "mannaka",
+            "arti": "tengah-tengah",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "反対側",
+            "romaji": "hantai-gawa",
+            "arti": "sisi berlawanan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "表",
+            "romaji": "omote",
+            "arti": "depan / permukaan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "裏",
+            "romaji": "ura",
+            "arti": "belakang / sisi sebaliknya",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "底",
+            "romaji": "soko",
+            "arti": "dasar",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "端",
+            "romaji": "hashi",
+            "arti": "ujung / tepi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "列",
+            "romaji": "retsu",
+            "arti": "barisan / antrean",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "都合",
+            "romaji": "tsugou",
+            "arti": "kondisi (waktu/kesempatan)",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "都会",
+            "romaji": "tokai",
+            "arti": "kota besar",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "田舎",
+            "romaji": "inaka",
+            "arti": "kampung / pedesaan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "地球",
+            "romaji": "chikyuu",
+            "arti": "bumi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "地理",
+            "romaji": "chiri",
+            "arti": "geografi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "歴史",
+            "romaji": "rekishi",
+            "arti": "sejarah",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "美術",
+            "romaji": "bijutsu",
+            "arti": "seni rupa",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "音楽家",
+            "romaji": "ongakuka",
+            "arti": "musisi",
+            "subcategory": "N4 - Kata Benda"
+          }
+        ]
+      },
+      {
+        "pageIndex": 4,
+        "items": [
+          {
+            "kanji": "画家",
+            "romaji": "gaka",
+            "arti": "pelukis",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "小説",
+            "romaji": "shousetsu",
+            "arti": "novel",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "漫画",
+            "romaji": "manga",
+            "arti": "komik",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "アニメ",
+            "romaji": "anime",
+            "arti": "anime",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "放送",
+            "romaji": "housou",
+            "arti": "siaran",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "新聞社",
+            "romaji": "shinbunsha",
+            "arti": "perusahaan koran",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "記者",
+            "romaji": "kisha",
+            "arti": "wartawan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "伝言",
+            "romaji": "dengon",
+            "arti": "pesan titipan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "お辞儀",
+            "romaji": "ojigi",
+            "arti": "membungkuk hormat",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "お土産",
+            "romaji": "omiyage",
+            "arti": "oleh-oleh",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "お祝い",
+            "romaji": "oiwai",
+            "arti": "ucapan selamat",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "お見舞い",
+            "romaji": "omimai",
+            "arti": "menjenguk",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "努力",
+            "romaji": "doryoku",
+            "arti": "usaha keras",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "成功",
+            "romaji": "seikou",
+            "arti": "kesuksesan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "失敗",
+            "romaji": "shippai",
+            "arti": "kegagalan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "合格",
+            "romaji": "goukaku",
+            "arti": "lulus (ujian)",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "就職",
+            "romaji": "shuushoku",
+            "arti": "mendapatkan pekerjaan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "昼休み",
+            "romaji": "hiruyasumi",
+            "arti": "istirahat siang",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "休憩",
+            "romaji": "kyuukei",
+            "arti": "istirahat (jeda)",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "関心",
+            "romaji": "kanshin",
+            "arti": "perhatian / minat",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "興味",
+            "romaji": "kyoumi",
+            "arti": "minat",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "期待",
+            "romaji": "kitai",
+            "arti": "harapan / ekspektasi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "緊張",
+            "romaji": "kinchou",
+            "arti": "tegang / gugup",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "安心",
+            "romaji": "anshin",
+            "arti": "lega / tenang",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "用意",
+            "romaji": "youi",
+            "arti": "persiapan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "準備",
+            "romaji": "junbi",
+            "arti": "persiapan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "完成",
+            "romaji": "kansei",
+            "arti": "penyelesaian (selesai sempurna)",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "完了",
+            "romaji": "kanryou",
+            "arti": "rampung",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "開始",
+            "romaji": "kaishi",
+            "arti": "memulai",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "終了",
+            "romaji": "shuuryou",
+            "arti": "selesai",
+            "subcategory": "N4 - Kata Benda"
+          }
+        ]
+      },
+      {
+        "pageIndex": 5,
+        "items": [
+          {
+            "kanji": "出席",
+            "romaji": "shusseki",
+            "arti": "hadir",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "欠席",
+            "romaji": "kesseki",
+            "arti": "tidak hadir",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "参加",
+            "romaji": "sanka",
+            "arti": "ikut serta",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "中止",
+            "romaji": "chuushi",
+            "arti": "dibatalkan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "開店",
+            "romaji": "kaiten",
+            "arti": "pembukaan toko",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "閉店",
+            "romaji": "heiten",
+            "arti": "penutupan toko",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "営業",
+            "romaji": "eigyou",
+            "arti": "bisnis / operasional",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "製品",
+            "romaji": "seihin",
+            "arti": "produk (manufaktur)",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "価格",
+            "romaji": "kakaku",
+            "arti": "harga",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "道具",
+            "romaji": "dougu",
+            "arti": "alat",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "材料",
+            "romaji": "zairyou",
+            "arti": "bahan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "包装",
+            "romaji": "housou",
+            "arti": "pembungkusan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "修理",
+            "romaji": "shuuri",
+            "arti": "memperbaiki / reparasi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "工事",
+            "romaji": "kouji",
+            "arti": "konstruksi",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "留学",
+            "romaji": "ryuugaku",
+            "arti": "studi di luar negeri",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "帰国",
+            "romaji": "kikoku",
+            "arti": "pulang ke negara asal",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "観光",
+            "romaji": "kankou",
+            "arti": "wisata",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "観光地",
+            "romaji": "kankouchi",
+            "arti": "tempat wisata",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "美容院",
+            "romaji": "biyouin",
+            "arti": "salon kecantikan",
+            "subcategory": "N4 - Kata Benda"
+          },
+          {
+            "kanji": "床屋",
+            "romaji": "tokoya",
+            "arti": "tukang cukur",
+            "subcategory": "N4 - Kata Benda"
+          }
+        ]
+      }
+    ]
   }
-] as const;
+  ] as const;
 
 // Flattened word list with section/page indices for stats tracking
 export interface FlatVocabItem extends VocabItem {
