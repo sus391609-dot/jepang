@@ -8,11 +8,28 @@ import {
   ChevronRight,
   Eye,
   EyeOff,
+  LayoutGrid,
   RotateCcw,
+  Table as TableIcon,
 } from "lucide-react";
 import { VOCAB_SECTIONS, getSection } from "../data/vocab";
 import { useApp } from "../contexts/AppContext";
 import { shuffle } from "../lib/shuffle";
+
+type ViewMode = "cards" | "table";
+
+const VIEW_MODE_KEY = "jepang:vocab:viewMode";
+
+function loadViewMode(): ViewMode {
+  if (typeof window === "undefined") return "cards";
+  const v = window.localStorage.getItem(VIEW_MODE_KEY);
+  return v === "table" ? "table" : "cards";
+}
+
+function saveViewMode(v: ViewMode) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(VIEW_MODE_KEY, v);
+}
 
 export default function Vocab() {
   const { sectionId, pageNum } = useParams();
@@ -112,9 +129,22 @@ function SectionPage({
   const [showRomaji, setShowRomaji] = useState(true);
   const [showArti, setShowArti] = useState(true);
   const [shuffled, setShuffled] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>(() => loadViewMode());
   const [order, setOrder] = useState<number[]>(() =>
     page.items.map((_, i) => i)
   );
+
+  useEffect(() => {
+    saveViewMode(viewMode);
+  }, [viewMode]);
+
+  const globalOffset = useMemo(() => {
+    let offset = 0;
+    for (let i = 0; i < pageIndex; i++) {
+      offset += section.pages[i].items.length;
+    }
+    return offset;
+  }, [section, pageIndex]);
 
   useEffect(() => {
     setOrder(page.items.map((_, i) => i));
@@ -157,6 +187,34 @@ function SectionPage({
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          <div className="inline-flex items-center gap-1 rounded-lg border border-white/10 p-0.5 text-xs">
+            <button
+              type="button"
+              onClick={() => setViewMode("cards")}
+              className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 transition ${
+                viewMode === "cards"
+                  ? "bg-white text-neutral-900"
+                  : "text-neutral-300 hover:bg-white/5"
+              }`}
+              aria-pressed={viewMode === "cards"}
+              title="Tampilan kartu (flashcard)"
+            >
+              <LayoutGrid size={14} /> Kartu
+            </button>
+            <button
+              type="button"
+              onClick={() => setViewMode("table")}
+              className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 transition ${
+                viewMode === "table"
+                  ? "bg-white text-neutral-900"
+                  : "text-neutral-300 hover:bg-white/5"
+              }`}
+              aria-pressed={viewMode === "table"}
+              title="Tampilan tabel"
+            >
+              <TableIcon size={14} /> Tabel
+            </button>
+          </div>
           <button
             type="button"
             onClick={() => setShowRomaji((v) => !v)}
@@ -189,26 +247,94 @@ function SectionPage({
         </div>
       </header>
 
-      {/* Flashcards grid */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((it) => {
-          const gid = `${section.id}-${pageIndex}-${it._i}`;
-          const isMem = Boolean(memorized[gid]);
-          return (
-            <FlashCard
-              key={gid}
-              kanji={it.kanji}
-              romaji={it.romaji}
-              arti={it.arti}
-              subcategory={it.subcategory}
-              showRomaji={showRomaji}
-              showArti={showArti}
-              memorized={isMem}
-              onToggleMemorized={() => toggleMemorized(gid)}
-            />
-          );
-        })}
-      </div>
+      {viewMode === "cards" ? (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((it) => {
+            const gid = `${section.id}-${pageIndex}-${it._i}`;
+            const isMem = Boolean(memorized[gid]);
+            return (
+              <FlashCard
+                key={gid}
+                kanji={it.kanji}
+                romaji={it.romaji}
+                arti={it.arti}
+                subcategory={it.subcategory}
+                showRomaji={showRomaji}
+                showArti={showArti}
+                memorized={isMem}
+                onToggleMemorized={() => toggleMemorized(gid)}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className="jp-card overflow-hidden rounded-2xl">
+          <div className="overflow-x-auto scrollbar-thin">
+            <table className="w-full min-w-[640px] text-left text-sm">
+              <thead className="bg-white/[0.03] text-xs uppercase tracking-wider text-neutral-400">
+                <tr>
+                  <th className="px-4 py-3 text-center w-12">#</th>
+                  <th className="px-4 py-3">Kanji</th>
+                  {showRomaji && <th className="px-4 py-3">Romaji</th>}
+                  {showArti && <th className="px-4 py-3">Arti</th>}
+                  <th className="px-4 py-3 text-center w-28">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {items.map((it, rowIdx) => {
+                  const gid = `${section.id}-${pageIndex}-${it._i}`;
+                  const isMem = Boolean(memorized[gid]);
+                  return (
+                    <tr
+                      key={gid}
+                      className={`transition hover:bg-white/[0.03] ${
+                        isMem ? "bg-emerald-500/[0.04]" : ""
+                      }`}
+                    >
+                      <td className="px-4 py-3 text-center text-xs text-neutral-500">
+                        {globalOffset + rowIdx + 1}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="text-jp text-lg font-semibold text-neutral-100">
+                          {it.kanji}
+                        </div>
+                        {it.subcategory && (
+                          <div className="mt-0.5 text-[10px] uppercase tracking-wider text-neutral-500">
+                            {it.subcategory}
+                          </div>
+                        )}
+                      </td>
+                      {showRomaji && (
+                        <td className="px-4 py-3 italic text-neutral-300">
+                          {it.romaji}
+                        </td>
+                      )}
+                      {showArti && (
+                        <td className="px-4 py-3 text-neutral-200">{it.arti}</td>
+                      )}
+                      <td className="px-4 py-3 text-center">
+                        <button
+                          type="button"
+                          onClick={() => toggleMemorized(gid)}
+                          className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium transition ${
+                            isMem
+                              ? "bg-emerald-500/20 text-emerald-300 ring-1 ring-emerald-400/40"
+                              : "border border-white/15 text-neutral-300 hover:bg-white/5"
+                          }`}
+                          title={isMem ? "Sudah hafal" : "Tandai sebagai hafal"}
+                        >
+                          <Check size={12} />
+                          {isMem ? "Hafal" : "Tandai"}
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       {/* Pagination */}
       <nav className="jp-card flex items-center justify-between rounded-2xl p-4">
