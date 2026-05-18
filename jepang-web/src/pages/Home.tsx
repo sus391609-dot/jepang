@@ -27,7 +27,7 @@ export default function Home() {
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
             <Sparkles size={14} /> 日本語 Learning Hub
           </div>
-          <h1 className="text-jp text-3xl font-bold leading-tight break-words sm:text-4xl md:text-5xl">
+          <h1 className="text-jp text-3xl font-bold leading-tight break-words sm:text-4xl lg:text-5xl">
             Belajar Bahasa Jepang{" "}
             <span className="bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">
               dengan cara yang menyenangkan
