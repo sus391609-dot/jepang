@@ -85,7 +85,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         )}
 
         {/* Main */}
-        <main className="min-h-screen flex-1">
+        <main className="min-h-screen w-full min-w-0 flex-1">
           {/* Mobile top bar */}
           <div className="sticky top-0 z-20 flex items-center justify-between border-b border-white/5 bg-neutral-950/70 px-4 py-3 backdrop-blur md:hidden">
             <button
