@@ -10,6 +10,11 @@ import TestTyping from "./pages/TestTyping";
 import TestSentence from "./pages/TestSentence";
 import Statistics from "./pages/Statistics";
 import Notes from "./pages/Notes";
+import Kaigo from "./pages/Kaigo";
+import KaigoModulePage from "./pages/KaigoModulePage";
+import KaigoVocab from "./pages/KaigoVocab";
+import KaigoTestMC from "./pages/KaigoTestMC";
+import KaigoTestTyping from "./pages/KaigoTestTyping";
 
 function App() {
   return (
@@ -25,6 +30,12 @@ function App() {
             <Route path="/tes/pilihan-ganda" element={<TestMC />} />
             <Route path="/tes/mengetik" element={<TestTyping />} />
             <Route path="/tes/susun-kalimat" element={<TestSentence />} />
+            <Route path="/kaigo" element={<Kaigo />} />
+            <Route path="/kaigo/:moduleId" element={<KaigoModulePage />} />
+            <Route path="/kaigo/:moduleId/tes/pilihan-ganda" element={<KaigoTestMC />} />
+            <Route path="/kaigo/:moduleId/tes/mengetik" element={<KaigoTestTyping />} />
+            <Route path="/kaigo/:moduleId/:sectionId" element={<KaigoVocab />} />
+            <Route path="/kaigo/:moduleId/:sectionId/:pageNum" element={<KaigoVocab />} />
             <Route path="/statistik" element={<Statistics />} />
             <Route path="/catatan" element={<Notes />} />
             <Route path="*" element={<Home />} />

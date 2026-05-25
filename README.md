@@ -13,7 +13,11 @@ Dibangun dengan React + TypeScript + Vite + Tailwind CSS.
   pencarian dan tandai "Hafal". Pilihan tampilan tersimpan otomatis.
 - **Tes Pilihan Ganda**: pilih halaman, jumlah soal, dan waktu per soal.
   Tanpa romaji — hanya kanji ↔ arti.
-- **Tes Mengetik**: ketik arti dari kanji atau sebaliknya. Tanpa romaji.
+- **Tes Mengetik**: ketik **arti** dari kanji, atau ketik **romaji** dari arti.
+- **Modul Kaigo (Perawatan Lansia)**: dua modul terpisah (Kaigo 1 Dasar &
+  Kaigo 2 Lanjutan) berisi ratusan kosakata kaigo yang diurut dari yang paling
+  sering dipakai (tubuh, organ tubuh, dst.), lengkap dengan Tes Pilihan Ganda
+  dan Tes Mengetik per modul.
 - **Tes Susun Kalimat**: 5 level kesulitan dengan ribuan kalimat (kombinasi
   kalimat kurasi + kalimat hasil generator template × pool kosakata), mode
   Arti → Kanji & Arti → Romaji, minimal pilih 3 halaman kosakata.

@@ -3,6 +3,7 @@ import {
   ArrowRight,
   BookOpen,
   GraduationCap,
+  HeartPulse,
   NotebookPen,
   Sparkles,
   Target,
@@ -10,6 +11,7 @@ import {
 } from "lucide-react";
 import { useApp } from "../contexts/AppContext";
 import { TOTAL_WORDS, VOCAB_SECTIONS } from "../data/vocab";
+import { KAIGO_MODULES, KAIGO_TOTAL_WORDS } from "../data/kaigo";
 
 export default function Home() {
   const { memorized, history } = useApp();
@@ -75,6 +77,48 @@ export default function Home() {
           value={history.length.toLocaleString("id-ID")}
           sub={history.length > 0 ? "lihat riwayat lengkap" : "belum ada tes"}
         />
+      </section>
+
+      {/* Kaigo modules */}
+      <section>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-semibold tracking-tight">
+            Modul Kaigo (介護) — {KAIGO_TOTAL_WORDS} kosakata
+          </h2>
+          <Link
+            to="/kaigo"
+            className="inline-flex items-center gap-1 text-sm text-neutral-400 hover:text-white"
+          >
+            Lihat semua <ArrowRight size={14} />
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {KAIGO_MODULES.map((m) => (
+            <Link
+              key={m.id}
+              to={`/kaigo/${m.id}`}
+              className="jp-card jp-card-hover rounded-2xl p-5"
+            >
+              <div className="flex items-start justify-between">
+                <div>
+                  <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-neutral-500">
+                    <HeartPulse size={14} /> Kaigo
+                  </div>
+                  <div className="mt-1 flex items-center gap-2">
+                    <span className="text-2xl" aria-hidden>
+                      {m.emoji}
+                    </span>
+                    <h3 className="text-base font-semibold text-neutral-100">{m.label}</h3>
+                  </div>
+                  <p className="mt-1 text-sm text-neutral-400">
+                    {m.totalWords} kosakata &middot; {m.sections.length} kategori
+                  </p>
+                </div>
+                <ArrowRight size={16} className="text-neutral-500" />
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* Categories */}
