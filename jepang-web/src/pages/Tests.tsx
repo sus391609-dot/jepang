@@ -11,7 +11,7 @@ const TESTS = [
   {
     to: "/tes/mengetik",
     title: "Mengetik",
-    desc: "Ketik jawaban berdasarkan kanji/arti yang muncul. Tanpa romaji.",
+    desc: "Ketik arti dari kanji, atau ketik romaji dari arti.",
     icon: Keyboard,
   },
   {
