@@ -10,7 +10,12 @@ import {
 import { loadJSON, saveJSON, STORAGE_KEYS } from "../lib/storage";
 import { TOTAL_WORDS } from "../data/vocab";
 
-export type TestKind = "mc" | "typing" | "sentence";
+export type TestKind =
+  | "mc"
+  | "typing"
+  | "sentence"
+  | "konjugasi"
+  | "grammar";
 
 export interface TestRun {
   id: string;
@@ -38,6 +43,8 @@ export interface AppState {
   memorized: Record<string, true>;
   history: TestRun[];
   notes: NoteEntry[];
+  conjugationRuns: TestRun[];
+  grammarRuns: TestRun[];
 }
 
 interface AppContextValue extends AppState {
@@ -47,6 +54,8 @@ interface AppContextValue extends AppState {
   isMemorized: (globalId: string) => boolean;
   addRun: (run: TestRun) => void;
   clearHistory: () => void;
+  addConjugationRun: (run: TestRun) => void;
+  addGrammarRun: (run: TestRun) => void;
   addNote: (n: Omit<NoteEntry, "id" | "createdAt">) => void;
   updateNote: (id: string, patch: Partial<NoteEntry>) => void;
   deleteNote: (id: string) => void;
@@ -65,6 +74,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [notes, setNotes] = useState<NoteEntry[]>(() =>
     loadJSON<NoteEntry[]>(STORAGE_KEYS.notes, [])
   );
+  const [conjugationRuns, setConjugationRuns] = useState<TestRun[]>(() =>
+    loadJSON<TestRun[]>(STORAGE_KEYS.conjugationRuns, [])
+  );
+  const [grammarRuns, setGrammarRuns] = useState<TestRun[]>(() =>
+    loadJSON<TestRun[]>(STORAGE_KEYS.grammarRuns, [])
+  );
 
   useEffect(() => {
     saveJSON(STORAGE_KEYS.memorized, memorized);
@@ -75,6 +90,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     saveJSON(STORAGE_KEYS.notes, notes);
   }, [notes]);
+  useEffect(() => {
+    saveJSON(STORAGE_KEYS.conjugationRuns, conjugationRuns);
+  }, [conjugationRuns]);
+  useEffect(() => {
+    saveJSON(STORAGE_KEYS.grammarRuns, grammarRuns);
+  }, [grammarRuns]);
 
   const toggleMemorized = useCallback((globalId: string) => {
     setMemorizedState((prev) => {
@@ -105,6 +126,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const clearHistory = useCallback(() => setHistory([]), []);
 
+  const addConjugationRun = useCallback((run: TestRun) => {
+    setConjugationRuns((prev) => [run, ...prev].slice(0, 200));
+    setHistory((prev) => [run, ...prev].slice(0, 200));
+  }, []);
+
+  const addGrammarRun = useCallback((run: TestRun) => {
+    setGrammarRuns((prev) => [run, ...prev].slice(0, 200));
+    setHistory((prev) => [run, ...prev].slice(0, 200));
+  }, []);
+
   const addNote = useCallback((n: Omit<NoteEntry, "id" | "createdAt">) => {
     setNotes((prev) => [
       {
@@ -131,6 +162,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setMemorizedState({});
     setHistory([]);
     setNotes([]);
+    setConjugationRuns([]);
+    setGrammarRuns([]);
   }, []);
 
   const value = useMemo<AppContextValue>(
@@ -138,12 +171,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
       memorized,
       history,
       notes,
+      conjugationRuns,
+      grammarRuns,
       totalWords: TOTAL_WORDS,
       toggleMemorized,
       setMemorized,
       isMemorized,
       addRun,
       clearHistory,
+      addConjugationRun,
+      addGrammarRun,
       addNote,
       updateNote,
       deleteNote,
@@ -153,11 +190,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
       memorized,
       history,
       notes,
+      conjugationRuns,
+      grammarRuns,
       toggleMemorized,
       setMemorized,
       isMemorized,
       addRun,
       clearHistory,
+      addConjugationRun,
+      addGrammarRun,
       addNote,
       updateNote,
       deleteNote,
