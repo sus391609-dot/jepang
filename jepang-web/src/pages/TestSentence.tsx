@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, RefreshCcw, XCircle } from "lucide-react";
 import PageSelector, { pageKey } from "../components/PageSelector";
+import SpeakButton from "../components/SpeakButton";
 import Timer from "../components/Timer";
 import { sample, shuffle } from "../lib/shuffle";
 import { wordsFromPages } from "../lib/vocabHelpers";
@@ -572,8 +573,11 @@ export default function TestSentence() {
             <p className="text-rose-300">Belum tepat.</p>
           )}
           <div className="rounded-xl border border-white/10 bg-white/5 p-3">
-            <div className="text-xs uppercase tracking-wider text-neutral-500">
-              Jawaban benar
+            <div className="flex items-center justify-between gap-2">
+              <div className="text-xs uppercase tracking-wider text-neutral-500">
+                Jawaban benar
+              </div>
+              <SpeakButton text={q.kanji} stopPropagation={false} />
             </div>
             <div className="mt-1 space-y-1">
               <div>

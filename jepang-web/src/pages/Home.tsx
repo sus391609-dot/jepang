@@ -8,16 +8,21 @@ import {
   Sparkles,
   Target,
   TrendingUp,
+  Volume2,
 } from "lucide-react";
 import { useApp } from "../contexts/AppContext";
 import { TOTAL_WORDS, VOCAB_SECTIONS } from "../data/vocab";
 import { KAIGO_MODULES, KAIGO_TOTAL_WORDS } from "../data/kaigo";
+import { isTTSSupported, speakJa } from "../lib/tts";
+import { useTtsAutoplay } from "../lib/ttsSettings";
 
 export default function Home() {
   const { memorized, history } = useApp();
   const memCount = Object.keys(memorized).length;
   const pct = TOTAL_WORDS > 0 ? Math.round((memCount / TOTAL_WORDS) * 100) : 0;
   const lastRuns = history.slice(0, 3);
+  const [ttsAutoplay, setTtsAutoplay] = useTtsAutoplay();
+  const ttsSupported = isTTSSupported();
 
   return (
     <div className="space-y-10">
@@ -202,6 +207,49 @@ export default function Home() {
             })}
           </div>
         )}
+      </section>
+
+      {/* TTS settings */}
+      <section className="jp-card flex flex-col items-start justify-between gap-3 rounded-2xl p-6 md:flex-row md:items-center">
+        <div className="flex items-center gap-3">
+          <div className="rounded-xl bg-white/5 p-3 text-neutral-200">
+            <Volume2 size={20} />
+          </div>
+          <div>
+            <p className="text-base font-semibold">Pelafalan otomatis (TTS)</p>
+            <p className="text-sm text-neutral-400">
+              {ttsSupported
+                ? "Bacakan kanji secara otomatis saat kartu di-flip."
+                : "Browser ini tidak mendukung Web Speech API. Coba Chrome terbaru."}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          {ttsSupported && (
+            <button
+              type="button"
+              onClick={() => speakJa("こんにちは")}
+              className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-3 py-1.5 text-xs font-medium text-neutral-200 hover:bg-white/5"
+              title="Tes suara"
+            >
+              <Volume2 size={14} /> Tes suara
+            </button>
+          )}
+          <label
+            className={`inline-flex cursor-pointer items-center gap-2 text-sm ${
+              ttsSupported ? "text-neutral-200" : "cursor-not-allowed text-neutral-500"
+            }`}
+          >
+            <input
+              type="checkbox"
+              checked={ttsAutoplay}
+              onChange={(e) => setTtsAutoplay(e.target.checked)}
+              disabled={!ttsSupported}
+              className="h-4 w-4 rounded border-white/20 bg-neutral-900 accent-white"
+            />
+            Auto-play saat flip kartu
+          </label>
+        </div>
       </section>
 
       {/* Notes shortcut */}
