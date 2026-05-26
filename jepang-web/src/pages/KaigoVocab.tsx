@@ -12,6 +12,7 @@ import {
   Table as TableIcon,
 } from "lucide-react";
 import FlashCard from "../components/FlashCard";
+import SpeakButton from "../components/SpeakButton";
 import { useApp } from "../contexts/AppContext";
 import { getKaigoModule, getKaigoSection } from "../data/kaigo";
 import { loadJSON, saveJSON } from "../lib/storage";
@@ -226,8 +227,11 @@ export default function KaigoVocab() {
                         {globalOffset + rowIdx + 1}
                       </td>
                       <td className="px-4 py-3">
-                        <div className="text-jp text-lg font-semibold text-neutral-100">
-                          {it.kanji}
+                        <div className="flex items-center gap-2">
+                          <SpeakButton text={it.kanji} />
+                          <div className="text-jp text-lg font-semibold text-neutral-100">
+                            {it.kanji}
+                          </div>
                         </div>
                         {it.subcategory && (
                           <div className="mt-0.5 text-[10px] uppercase tracking-wider text-neutral-500">

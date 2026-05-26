@@ -21,6 +21,10 @@ Dibangun dengan React + TypeScript + Vite + Tailwind CSS.
 - **Tes Susun Kalimat**: 5 level kesulitan dengan ribuan kalimat (kombinasi
   kalimat kurasi + kalimat hasil generator template × pool kosakata), mode
   Arti → Kanji & Arti → Romaji, minimal pilih 3 halaman kosakata.
+- **Pelafalan audio (TTS)**: tombol speaker di kartu kosakata, tabel, dan
+  layar tes untuk membacakan kanji dalam bahasa Jepang via Web Speech API
+  browser — gratis, native, tanpa dependency tambahan. Opsi *auto-play saat
+  flip kartu* dapat diaktifkan dari halaman beranda.
 - **Statistik**: jumlah & persentase hafalan, akurasi, kecepatan, tren tes,
   hafalan per kategori, dan riwayat lengkap.
 - **Catatan harian**: catat progres dan target belajar per tanggal.

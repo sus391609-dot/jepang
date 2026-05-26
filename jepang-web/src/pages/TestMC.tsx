@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, RefreshCcw, XCircle } from "lucide-react";
 import PageSelector, { pageKey } from "../components/PageSelector";
+import SpeakButton from "../components/SpeakButton";
 import TestSettings, { type Direction } from "../components/TestSettings";
 import Timer from "../components/Timer";
 import { sample, shuffle } from "../lib/shuffle";
@@ -210,7 +211,7 @@ export default function TestMC() {
         <div className="text-xs uppercase tracking-wider text-neutral-500">
           {direction === "kanji-to-arti" ? "Apa arti dari kata ini?" : "Apa kanji untuk arti ini?"}
         </div>
-        <div className="mt-3 break-words">
+        <div className="mt-3 flex items-center justify-center gap-3 break-words">
           <span
             className={
               direction === "kanji-to-arti"
@@ -220,6 +221,14 @@ export default function TestMC() {
           >
             {direction === "kanji-to-arti" ? q.word.kanji : q.word.arti}
           </span>
+          {direction === "kanji-to-arti" && (
+            <SpeakButton
+              text={q.word.kanji}
+              iconSize={18}
+              className="h-10 w-10"
+              stopPropagation={false}
+            />
+          )}
         </div>
       </div>
 
@@ -258,7 +267,12 @@ export default function TestMC() {
           <div className="text-xs uppercase tracking-wider text-neutral-500">
             Jawaban benar
           </div>
-          <div className="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+            <SpeakButton
+              text={q.word.kanji}
+              iconSize={16}
+              stopPropagation={false}
+            />
             <span className="text-jp text-2xl font-semibold text-neutral-100">
               {q.word.kanji}
             </span>

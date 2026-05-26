@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, RefreshCcw, Type, XCircle } from "lucide-react";
 import PageSelector, { pageKey } from "../components/PageSelector";
+import SpeakButton from "../components/SpeakButton";
 import TestSettings from "../components/TestSettings";
 import Timer from "../components/Timer";
 import { sample } from "../lib/shuffle";
@@ -329,7 +330,7 @@ export default function TestTyping() {
             ? "Ketik arti dari kata berikut"
             : "Ketik romaji dari arti berikut"}
         </div>
-        <div className="mt-3 break-words">
+        <div className="mt-3 flex items-center justify-center gap-3 break-words">
           <span
             className={
               direction === "kanji-to-arti"
@@ -339,6 +340,14 @@ export default function TestTyping() {
           >
             {direction === "kanji-to-arti" ? word.kanji : word.arti}
           </span>
+          {direction === "kanji-to-arti" && (
+            <SpeakButton
+              text={word.kanji}
+              iconSize={18}
+              className="h-10 w-10"
+              stopPropagation={false}
+            />
+          )}
         </div>
       </div>
 
@@ -390,7 +399,12 @@ export default function TestTyping() {
               <div className="text-xs uppercase tracking-wider text-neutral-500">
                 Detail jawaban
               </div>
-              <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+                <SpeakButton
+                  text={word.kanji}
+                  iconSize={16}
+                  stopPropagation={false}
+                />
                 <span className="text-jp text-xl font-semibold text-neutral-100">
                   {word.kanji}
                 </span>
