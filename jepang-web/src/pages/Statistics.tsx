@@ -30,7 +30,9 @@ export default function Statistics() {
   const memCount = Object.keys(memorized).length;
   const pct = TOTAL_WORDS > 0 ? Math.round((memCount / TOTAL_WORDS) * 100) : 0;
 
-  const [filter, setFilter] = useState<"all" | "mc" | "typing" | "sentence">("all");
+  const [filter, setFilter] = useState<
+    "all" | "mc" | "typing" | "sentence" | "konjugasi" | "grammar"
+  >("all");
   const filteredHistory = useMemo(
     () => (filter === "all" ? history : history.filter((h) => h.kind === filter)),
     [history, filter]
@@ -267,6 +269,8 @@ export default function Statistics() {
               ["mc", "Pilihan Ganda"],
               ["typing", "Mengetik"],
               ["sentence", "Susun Kalimat"],
+              ["konjugasi", "Konjugasi"],
+              ["grammar", "Tata Bahasa"],
             ] as const).map(([k, label]) => (
               <button
                 key={k}
@@ -333,6 +337,10 @@ export default function Statistics() {
                             ? "Pilihan Ganda"
                             : r.kind === "typing"
                             ? "Mengetik"
+                            : r.kind === "konjugasi"
+                            ? "Konjugasi"
+                            : r.kind === "grammar"
+                            ? "Tata Bahasa"
                             : `Susun L${r.level}`}
                         </span>
                       </td>

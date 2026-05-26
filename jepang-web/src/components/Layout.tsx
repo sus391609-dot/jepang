@@ -2,6 +2,7 @@ import { type ReactNode, useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   BookOpen,
+  BookOpenCheck,
   GraduationCap,
   HeartPulse,
   Home,
@@ -9,12 +10,15 @@ import {
   NotebookPen,
   Sparkles,
   TrendingUp,
+  Wand2,
   X,
 } from "lucide-react";
 
 const NAV = [
   { to: "/", label: "Beranda", icon: Home },
   { to: "/kosakata", label: "Kosakata", icon: BookOpen },
+  { to: "/tata-bahasa", label: "Tata Bahasa", icon: BookOpenCheck },
+  { to: "/konjugasi", label: "Konjugasi", icon: Wand2 },
   { to: "/kaigo", label: "Kaigo", icon: HeartPulse },
   { to: "/tes", label: "Tes", icon: GraduationCap },
   { to: "/statistik", label: "Statistik", icon: TrendingUp },

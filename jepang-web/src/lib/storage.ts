@@ -25,4 +25,6 @@ export const STORAGE_KEYS = {
   history: "jp:history",
   notes: "jp:notes",
   settings: "jp:settings",
+  conjugationRuns: "jepang:konjugasi:runs",
+  grammarRuns: "jepang:tatabahasa:runs",
 } as const;

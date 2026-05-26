@@ -15,6 +15,10 @@ import KaigoModulePage from "./pages/KaigoModulePage";
 import KaigoVocab from "./pages/KaigoVocab";
 import KaigoTestMC from "./pages/KaigoTestMC";
 import KaigoTestTyping from "./pages/KaigoTestTyping";
+import Grammar from "./pages/Grammar";
+import GrammarDetail from "./pages/GrammarDetail";
+import GrammarTest from "./pages/GrammarTest";
+import Conjugation from "./pages/Conjugation";
 
 function App() {
   return (
@@ -36,6 +40,10 @@ function App() {
             <Route path="/kaigo/:moduleId/tes/mengetik" element={<KaigoTestTyping />} />
             <Route path="/kaigo/:moduleId/:sectionId" element={<KaigoVocab />} />
             <Route path="/kaigo/:moduleId/:sectionId/:pageNum" element={<KaigoVocab />} />
+            <Route path="/tata-bahasa" element={<Grammar />} />
+            <Route path="/tata-bahasa/tes" element={<GrammarTest />} />
+            <Route path="/tata-bahasa/:id" element={<GrammarDetail />} />
+            <Route path="/konjugasi" element={<Conjugation />} />
             <Route path="/statistik" element={<Statistics />} />
             <Route path="/catatan" element={<Notes />} />
             <Route path="*" element={<Home />} />

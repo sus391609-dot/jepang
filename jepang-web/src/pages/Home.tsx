@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   BookOpen,
+  BookOpenCheck,
   GraduationCap,
   HeartPulse,
   NotebookPen,
@@ -9,10 +10,13 @@ import {
   Target,
   TrendingUp,
   Volume2,
+  Wand2,
 } from "lucide-react";
 import { useApp } from "../contexts/AppContext";
 import { TOTAL_WORDS, VOCAB_SECTIONS } from "../data/vocab";
 import { KAIGO_MODULES, KAIGO_TOTAL_WORDS } from "../data/kaigo";
+import { GRAMMAR_TOTAL } from "../data/grammar";
+import { VERB_TOTAL } from "../data/verbs";
 import { isTTSSupported, speakJa } from "../lib/tts";
 import { useTtsAutoplay } from "../lib/ttsSettings";
 
@@ -82,6 +86,61 @@ export default function Home() {
           value={history.length.toLocaleString("id-ID")}
           sub={history.length > 0 ? "lihat riwayat lengkap" : "belum ada tes"}
         />
+      </section>
+
+      {/* Grammar & Conjugation modules */}
+      <section>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-semibold tracking-tight">
+            Tata Bahasa &amp; Konjugasi
+          </h2>
+          <Link
+            to="/tata-bahasa"
+            className="inline-flex items-center gap-1 text-sm text-neutral-400 hover:text-white"
+          >
+            Lihat semua <ArrowRight size={14} />
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <Link
+            to="/tata-bahasa"
+            className="jp-card jp-card-hover rounded-2xl p-5"
+          >
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-neutral-500">
+                  <BookOpenCheck size={14} /> Tata Bahasa N4
+                </div>
+                <h3 className="mt-1 text-base font-semibold text-neutral-100">
+                  {GRAMMAR_TOTAL} pola tata bahasa
+                </h3>
+                <p className="mt-1 text-sm text-neutral-400">
+                  Daftar lengkap pola N4 dengan contoh kalimat &amp; kuis pilihan ganda.
+                </p>
+              </div>
+              <ArrowRight size={16} className="text-neutral-500" />
+            </div>
+          </Link>
+          <Link
+            to="/konjugasi"
+            className="jp-card jp-card-hover rounded-2xl p-5"
+          >
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-neutral-500">
+                  <Wand2 size={14} /> Drill Konjugasi
+                </div>
+                <h3 className="mt-1 text-base font-semibold text-neutral-100">
+                  Latihan ます/て/ない/potensial/pasif/kausatif & lainnya
+                </h3>
+                <p className="mt-1 text-sm text-neutral-400">
+                  {VERB_TOTAL} kata kerja N4 dengan validasi konjugasi otomatis.
+                </p>
+              </div>
+              <ArrowRight size={16} className="text-neutral-500" />
+            </div>
+          </Link>
+        </div>
       </section>
 
       {/* Kaigo modules */}
@@ -189,6 +248,10 @@ export default function Home() {
                   ? "Pilihan Ganda"
                   : r.kind === "typing"
                   ? "Mengetik"
+                  : r.kind === "konjugasi"
+                  ? "Drill Konjugasi"
+                  : r.kind === "grammar"
+                  ? "Tata Bahasa"
                   : `Susun Kalimat L${r.level}`;
               return (
                 <div key={r.id} className="jp-card rounded-2xl p-5">
