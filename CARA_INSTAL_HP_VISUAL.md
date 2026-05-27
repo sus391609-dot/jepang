@@ -6,7 +6,24 @@ Panduan visual ini menunjukkan **persis apa yang akan kamu lihat di HP** saat in
 
 ---
 
+## Langkah 0 — Download APK
+
+File APK ada di **Releases** GitHub repo ini:
+
+- **Halaman Release:** <https://github.com/sus391609-dot/jepang/releases/tag/v1.0.0>
+- **Download langsung:** <https://github.com/sus391609-dot/jepang/releases/download/v1.0.0/nihongo-hub-debug.apk>
+
+Buka link di atas dari **browser di HP Android** (Chrome / browser bawaan) → di halaman Release scroll ke section **Assets** → tap `nihongo-hub-debug.apk` → file otomatis download ke folder **Download** HP.
+
+Kalau Chrome di HP pop-up "*This type of file can harm your device*", tap **Download anyway / Tetap unduh** — itu hanya peringatan standar untuk semua APK di luar Play Store, file ini aman karena kamu sendiri yang publish.
+
+Setelah download selesai, lanjut ke Langkah 1 di bawah.
+
+---
+
 ## Langkah 1 — Pindahkan APK ke HP
+
+> **Kalau kamu sudah download langsung di HP** lewat Langkah 0 di atas, **skip langkah ini** — file sudah ada di folder Download HP. Lanjut ke Langkah 2.
 
 Pilih salah satu cara untuk memindahkan file APK ke HP Android:
 

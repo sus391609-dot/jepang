@@ -4,6 +4,21 @@ Panduan ini menjelaskan cara meng-install aplikasi **Nihongo Hub** (versi APK)
 di HP Android **tanpa Play Store** dan menjalankannya **100% offline** —
 tidak perlu hosting, tidak perlu internet setelah ter-install.
 
+> **Versi visual dengan screenshot:** lihat [`CARA_INSTAL_HP_VISUAL.md`](./CARA_INSTAL_HP_VISUAL.md).
+
+---
+
+## Download APK
+
+File APK resmi ada di halaman **Releases** GitHub repo ini:
+
+- Halaman release: <https://github.com/sus391609-dot/jepang/releases/tag/v1.0.0>
+- Download langsung: <https://github.com/sus391609-dot/jepang/releases/download/v1.0.0/nihongo-hub-debug.apk>
+
+Buka link di atas dari **browser HP** (Chrome dll) → tap file `nihongo-hub-debug.apk` di section **Assets** → otomatis download ke folder **Download** HP.
+
+Kalau download dari laptop, pindahkan file ke HP pakai salah satu cara di bagian "Pindahkan APK ke HP" di bawah.
+
 ---
 
 ## TL;DR (singkat)
