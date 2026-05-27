@@ -1,5 +1,14 @@
 import { Link } from "react-router-dom";
-import { GraduationCap, ListChecks, Keyboard, Shuffle, ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  ClipboardCheck,
+  GraduationCap,
+  Headphones,
+  Keyboard,
+  ListChecks,
+  Shuffle,
+} from "lucide-react";
 
 const TESTS = [
   {
@@ -19,6 +28,24 @@ const TESTS = [
     title: "Susun Kalimat",
     desc: "Susun pola kalimat dari arti ke kanji atau romaji. 5 level kesulitan.",
     icon: Shuffle,
+  },
+  {
+    to: "/tes/choukai",
+    title: "Choukai (Listening)",
+    desc: "Dengarkan teks Jepang via TTS (maks 2x putar) lalu pilih jawaban. Transcript muncul setelah jawab.",
+    icon: Headphones,
+  },
+  {
+    to: "/tes/dokkai",
+    title: "Dokkai (Reading)",
+    desc: "Baca passage pendek-menengah, toggle romaji bila perlu, lalu jawab pertanyaan pilihan ganda.",
+    icon: BookOpen,
+  },
+  {
+    to: "/tes/simulasi-jlpt-n4",
+    title: "Simulasi JLPT N4",
+    desc: "Simulasi penuh 3 seksi (Goi, Bunpou+Dokkai, Choukai) dengan timer dan estimasi LULUS/TIDAK.",
+    icon: ClipboardCheck,
   },
 ];
 

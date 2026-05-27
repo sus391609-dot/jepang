@@ -19,6 +19,9 @@ import Grammar from "./pages/Grammar";
 import GrammarDetail from "./pages/GrammarDetail";
 import GrammarTest from "./pages/GrammarTest";
 import Conjugation from "./pages/Conjugation";
+import Choukai from "./pages/Choukai";
+import Dokkai from "./pages/Dokkai";
+import SimulasiJLPT from "./pages/SimulasiJLPT";
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
             <Route path="/tes/pilihan-ganda" element={<TestMC />} />
             <Route path="/tes/mengetik" element={<TestTyping />} />
             <Route path="/tes/susun-kalimat" element={<TestSentence />} />
+            <Route path="/tes/choukai" element={<Choukai />} />
+            <Route path="/tes/dokkai" element={<Dokkai />} />
+            <Route path="/tes/simulasi-jlpt-n4" element={<SimulasiJLPT />} />
             <Route path="/kaigo" element={<Kaigo />} />
             <Route path="/kaigo/:moduleId" element={<KaigoModulePage />} />
             <Route path="/kaigo/:moduleId/tes/pilihan-ganda" element={<KaigoTestMC />} />
