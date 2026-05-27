@@ -1,6 +1,6 @@
 import { Clock, Hash, Type } from "lucide-react";
 
-export type Direction = "kanji-to-arti" | "arti-to-kanji";
+export type Direction = "kanji-to-arti" | "arti-to-kanji" | "arti-to-romaji";
 
 interface Props {
   count: number;
@@ -107,6 +107,17 @@ export default function TestSettings({
               }`}
             >
               Arti → Kanji
+            </button>
+            <button
+              type="button"
+              onClick={() => setDirection("arti-to-romaji")}
+              className={`rounded-lg border px-3 py-2 text-left text-sm ${
+                direction === "arti-to-romaji"
+                  ? "border-white/30 bg-white/10 text-white"
+                  : "border-white/10 text-neutral-300 hover:bg-white/5"
+              }`}
+            >
+              Arti → Romaji
             </button>
           </div>
         </div>

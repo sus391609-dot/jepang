@@ -9,6 +9,7 @@ import { sample, shuffle } from "../lib/shuffle";
 import {
   distractorsForArti,
   distractorsForKanji,
+  distractorsForRomaji,
   wordsFromPages,
 } from "../lib/vocabHelpers";
 import { useApp } from "../contexts/AppContext";
@@ -63,10 +64,15 @@ export default function TestMC() {
         const distractors = distractorsForArti(w, pool, 3);
         const opts = shuffle([w.arti, ...distractors]);
         return { word: w, options: opts, correctIndex: opts.indexOf(w.arti) };
-      } else {
+      } else if (direction === "arti-to-kanji") {
         const distractors = distractorsForKanji(w, pool, 3);
         const opts = shuffle([w.kanji, ...distractors]);
         return { word: w, options: opts, correctIndex: opts.indexOf(w.kanji) };
+      } else {
+        // arti-to-romaji
+        const distractors = distractorsForRomaji(w, pool, 3);
+        const opts = shuffle([w.romaji, ...distractors]);
+        return { word: w, options: opts, correctIndex: opts.indexOf(w.romaji) };
       }
     });
     setQuestions(qs);
@@ -161,16 +167,29 @@ export default function TestMC() {
   }
 
   if (stage === "result") {
+    const revealLabel =
+      direction === "kanji-to-arti"
+        ? "Arti benar"
+        : direction === "arti-to-kanji"
+        ? "Kanji benar"
+        : "Romaji benar";
     return (
       <ResultView
         title="Pilihan Ganda"
         results={results}
         timePerQ={timePerQ}
         onRetry={() => setStage("config")}
-        revealLabel="Arti benar"
-        getReveal={(w) => (direction === "kanji-to-arti" ? w.arti : w.kanji)}
+        revealLabel={revealLabel}
+        getReveal={(w) =>
+          direction === "kanji-to-arti"
+            ? w.arti
+            : direction === "arti-to-kanji"
+            ? w.kanji
+            : w.romaji
+        }
         getPrompt={(w) => (direction === "kanji-to-arti" ? w.kanji : w.arti)}
         getRomaji={(w) => w.romaji}
+        promptIsJp={direction === "kanji-to-arti"}
       />
     );
   }
@@ -190,7 +209,7 @@ export default function TestMC() {
       <div className="jp-card space-y-4 rounded-2xl p-5">
         <div className="flex items-center justify-between text-xs text-neutral-400">
           <span>Soal {idx + 1} dari {questions.length}</span>
-          <span>{direction === "kanji-to-arti" ? "Kanji → Arti" : "Arti → Kanji"}</span>
+          <span>{directionLabel(direction)}</span>
         </div>
         <div className="h-1 w-full overflow-hidden rounded-full bg-white/5">
           <div
@@ -207,9 +226,13 @@ export default function TestMC() {
         />
       </div>
 
-      <div className="jp-card rounded-3xl p-8 text-center">
+      <div className="jp-card rounded-3xl p-6 text-center sm:p-8">
         <div className="text-xs uppercase tracking-wider text-neutral-500">
-          {direction === "kanji-to-arti" ? "Apa arti dari kata ini?" : "Apa kanji untuk arti ini?"}
+          {direction === "kanji-to-arti"
+            ? "Apa arti dari kata ini?"
+            : direction === "arti-to-kanji"
+            ? "Apa kanji untuk arti ini?"
+            : "Apa romaji untuk arti ini?"}
         </div>
         <div className="mt-3 flex items-center justify-center gap-3 break-words">
           <span
@@ -250,7 +273,15 @@ export default function TestMC() {
               disabled={revealed}
               className={`flex min-h-[56px] items-center justify-between rounded-2xl border px-4 py-3.5 text-left transition sm:px-5 sm:py-4 ${cls}`}
             >
-              <span className={direction === "arti-to-kanji" ? "text-jp text-xl font-medium" : "text-base"}>
+              <span
+                className={
+                  direction === "arti-to-kanji"
+                    ? "text-jp text-xl font-medium"
+                    : direction === "arti-to-romaji"
+                    ? "text-base font-medium tracking-wide"
+                    : "text-base"
+                }
+              >
                 {opt}
               </span>
               {revealed && isCorrect && <CheckCircle2 size={18} className="text-emerald-400" />}
@@ -310,6 +341,17 @@ export default function TestMC() {
 function defaultPages(): Set<string> {
   const s = VOCAB_SECTIONS[0];
   return new Set([pageKey(s.id, 0)]);
+}
+
+function directionLabel(d: Direction): string {
+  switch (d) {
+    case "kanji-to-arti":
+      return "Kanji → Arti";
+    case "arti-to-kanji":
+      return "Arti → Kanji";
+    case "arti-to-romaji":
+      return "Arti → Romaji";
+  }
 }
 
 function ConfigView({
@@ -389,6 +431,7 @@ function ResultView({
   getReveal,
   getPrompt,
   getRomaji,
+  promptIsJp,
 }: {
   title: string;
   results: {
@@ -403,6 +446,7 @@ function ResultView({
   getReveal: (w: FlatVocabItem) => string;
   getPrompt: (w: FlatVocabItem) => string;
   getRomaji: (w: FlatVocabItem) => string;
+  promptIsJp: boolean;
 }) {
   const total = results.length;
   const correct = results.filter((r) => r.correct).length;
@@ -454,7 +498,9 @@ function ResultView({
                   <XCircle size={16} className="text-rose-400" />
                 )}
                 <span className="text-neutral-400">#{i + 1}</span>
-                <span className="text-jp text-lg">{getPrompt(r.word)}</span>
+                <span className={`text-lg ${promptIsJp ? "text-jp" : ""}`}>
+                  {getPrompt(r.word)}
+                </span>
               </div>
               <div className="text-right text-xs text-neutral-400">
                 <div>

@@ -178,3 +178,57 @@ node --experimental-strip-types scripts/test-conjugate.mjs
   (skala 0–60), total 0–180, dan **LULUS** atau **TIDAK** sesuai aturan JLPT
   asli. Tersimpan ke `jepang:jlpt:runs`; halaman Statistik akan menampilkan
   daftar percobaan + chart tren.
+
+## Build APK Android (offline)
+
+Aplikasi ini bisa dibungkus jadi APK Android lewat **Capacitor**. APK yang
+dihasilkan memuat seluruh web bundle di dalam paketnya, jadi setelah
+diinstall **bisa jalan 100% offline** (kosakata, tes, Kaigo, dst.).
+
+### Prasyarat (sekali setup)
+
+- Node.js 18+ dan npm
+- Java JDK 21
+- Android SDK (`platform-tools`, `platforms;android-35`, `build-tools;35.0.0`)
+- Set env: `ANDROID_HOME`, `JAVA_HOME` (Java 21)
+
+### Build APK debug
+
+```bash
+cd jepang-web
+npm install
+npm run apk:debug
+# Output: android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+Salin file `app-debug.apk` ke HP Android lalu install (aktifkan
+*Install unknown apps* untuk aplikasi yang dipakai mengirim file).
+
+### Build APK release (signed)
+
+```bash
+cd jepang-web
+npm run apk:release
+# Output: android/app/build/outputs/apk/release/app-release-unsigned.apk
+```
+
+Lalu sign pakai `apksigner` dengan keystore Anda sendiri.
+
+## Mode Offline / PWA
+
+Aplikasi sudah jadi PWA — bisa di-install langsung dari Chrome di HP via
+tombol "Install" yang muncul, atau via menu browser. Service worker
+melakukan precache semua aset, jadi setelah dibuka sekali dengan internet,
+aplikasi bisa dipakai full offline.
+
+## Fitur Tes PG (Pilihan Ganda)
+
+Tes Pilihan Ganda mendukung 3 arah soal yang dapat dipilih di halaman
+konfigurasi:
+
+- **Kanji → Arti**: tampilkan kanji, pilih artinya
+- **Arti → Kanji**: tampilkan arti, pilih kanjinya
+- **Arti → Romaji**: tampilkan arti, pilih romajinya (cocok untuk
+  yang sedang belajar baca/eja kanji)
+
+Ketiga mode tersedia juga di Tes Pilihan Ganda modul **Kaigo**.

@@ -15,7 +15,7 @@ import { useApp } from "../contexts/AppContext";
 import { getKaigoModule, type FlatKaigoItem } from "../data/kaigo";
 
 type Stage = "config" | "running" | "result";
-type Direction = "kanji-to-arti" | "arti-to-kanji";
+type Direction = "kanji-to-arti" | "arti-to-kanji" | "arti-to-romaji";
 
 interface Question {
   word: FlatKaigoItem;
@@ -57,6 +57,34 @@ function distractorsForKanji(
     if (out.length >= count) break;
   }
   return out;
+}
+
+function distractorsForRomaji(
+  correct: FlatKaigoItem,
+  pool: FlatKaigoItem[],
+  count: number
+): string[] {
+  const taken = new Set<string>([correct.romaji]);
+  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  const out: string[] = [];
+  for (const w of shuffled) {
+    if (taken.has(w.romaji)) continue;
+    taken.add(w.romaji);
+    out.push(w.romaji);
+    if (out.length >= count) break;
+  }
+  return out;
+}
+
+function directionLabel(d: Direction): string {
+  switch (d) {
+    case "kanji-to-arti":
+      return "Kanji → Arti";
+    case "arti-to-kanji":
+      return "Arti → Kanji";
+    case "arti-to-romaji":
+      return "Arti → Romaji";
+  }
 }
 
 export default function KaigoTestMC() {
@@ -138,10 +166,15 @@ export default function KaigoTestMC() {
         const distractors = distractorsForArti(w, pool, 3);
         const opts = shuffle([w.arti, ...distractors]);
         return { word: w, options: opts, correctIndex: opts.indexOf(w.arti) };
-      } else {
+      } else if (direction === "arti-to-kanji") {
         const distractors = distractorsForKanji(w, pool, 3);
         const opts = shuffle([w.kanji, ...distractors]);
         return { word: w, options: opts, correctIndex: opts.indexOf(w.kanji) };
+      } else {
+        // arti-to-romaji
+        const distractors = distractorsForRomaji(w, pool, 3);
+        const opts = shuffle([w.romaji, ...distractors]);
+        return { word: w, options: opts, correctIndex: opts.indexOf(w.romaji) };
       }
     });
     setQuestions(qs);
@@ -316,6 +349,17 @@ export default function KaigoTestMC() {
               >
                 Arti → Kanji
               </button>
+              <button
+                type="button"
+                onClick={() => setDirection("arti-to-romaji")}
+                className={`rounded-lg border px-3 py-2 text-left text-sm ${
+                  direction === "arti-to-romaji"
+                    ? "border-white/30 bg-white/10 text-white"
+                    : "border-white/10 text-neutral-300 hover:bg-white/5"
+                }`}
+              >
+                Arti → Romaji
+              </button>
             </div>
           </div>
         </div>
@@ -445,7 +489,11 @@ export default function KaigoTestMC() {
                     <XCircle size={16} className="text-rose-400" />
                   )}
                   <span className="text-neutral-400">#{i + 1}</span>
-                  <span className="text-jp text-lg">
+                  <span
+                    className={`text-lg ${
+                      direction === "kanji-to-arti" ? "text-jp" : ""
+                    }`}
+                  >
                     {direction === "kanji-to-arti" ? r.word.kanji : r.word.arti}
                   </span>
                 </div>
@@ -453,7 +501,11 @@ export default function KaigoTestMC() {
                   <div>
                     Benar:{" "}
                     <span className="font-medium text-neutral-100">
-                      {direction === "kanji-to-arti" ? r.word.arti : r.word.kanji}
+                      {direction === "kanji-to-arti"
+                        ? r.word.arti
+                        : direction === "arti-to-kanji"
+                        ? r.word.kanji
+                        : r.word.romaji}
                     </span>
                   </div>
                   <div className="text-neutral-500">
@@ -500,7 +552,7 @@ export default function KaigoTestMC() {
           <span>
             Soal {idx + 1} dari {questions.length}
           </span>
-          <span>{direction === "kanji-to-arti" ? "Kanji → Arti" : "Arti → Kanji"}</span>
+          <span>{directionLabel(direction)}</span>
         </div>
         <div className="h-1 w-full overflow-hidden rounded-full bg-white/5">
           <div
@@ -517,11 +569,13 @@ export default function KaigoTestMC() {
         />
       </div>
 
-      <div className="jp-card rounded-3xl p-8 text-center">
+      <div className="jp-card rounded-3xl p-6 text-center sm:p-8">
         <div className="text-xs uppercase tracking-wider text-neutral-500">
           {direction === "kanji-to-arti"
             ? "Apa arti dari kata ini?"
-            : "Apa kanji untuk arti ini?"}
+            : direction === "arti-to-kanji"
+            ? "Apa kanji untuk arti ini?"
+            : "Apa romaji untuk arti ini?"}
         </div>
         <div className="mt-3 break-words">
           <span
@@ -556,7 +610,11 @@ export default function KaigoTestMC() {
             >
               <span
                 className={
-                  direction === "arti-to-kanji" ? "text-jp text-xl font-medium" : "text-base"
+                  direction === "arti-to-kanji"
+                    ? "text-jp text-xl font-medium"
+                    : direction === "arti-to-romaji"
+                    ? "text-base font-medium tracking-wide"
+                    : "text-base"
                 }
               >
                 {opt}

@@ -73,6 +73,32 @@ export function distractorsForKanji(
   return out;
 }
 
+export function distractorsForRomaji(
+  correct: FlatVocabItem,
+  pool: FlatVocabItem[],
+  count: number
+): string[] {
+  const taken = new Set<string>([correct.romaji]);
+  const filtered = pool.filter((w) => w.romaji !== correct.romaji);
+  const shuffled = [...filtered].sort(() => Math.random() - 0.5);
+  const out: string[] = [];
+  for (const w of shuffled) {
+    if (taken.has(w.romaji)) continue;
+    taken.add(w.romaji);
+    out.push(w.romaji);
+    if (out.length >= count) break;
+  }
+  if (out.length < count) {
+    const more = ALL_WORDS.filter((w) => !taken.has(w.romaji));
+    for (const w of more) {
+      out.push(w.romaji);
+      taken.add(w.romaji);
+      if (out.length >= count) break;
+    }
+  }
+  return out;
+}
+
 export function normalizeAnswer(s: string): string {
   return s
     .trim()
