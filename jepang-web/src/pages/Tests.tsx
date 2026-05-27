@@ -14,7 +14,7 @@ const TESTS = [
   {
     to: "/tes/pilihan-ganda",
     title: "Pilihan Ganda",
-    desc: "Pilih arti yang benar dari kanji yang diberikan, atau sebaliknya. Tanpa romaji.",
+    desc: "Pilih arti dari kanji, kanji dari arti, atau romaji dari arti.",
     icon: ListChecks,
   },
   {
