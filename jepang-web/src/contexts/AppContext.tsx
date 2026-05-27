@@ -15,7 +15,10 @@ export type TestKind =
   | "typing"
   | "sentence"
   | "konjugasi"
-  | "grammar";
+  | "grammar"
+  | "choukai"
+  | "dokkai"
+  | "jlpt";
 
 export interface TestRun {
   id: string;
@@ -29,6 +32,26 @@ export interface TestRun {
   avgAnswerMs: number;
   pages: string[];
   level?: number;
+}
+
+export interface JLPTSectionResult {
+  id: "goi" | "bunpou-dokkai" | "choukai";
+  label: string;
+  total: number;
+  correct: number;
+  score: number; // skala 0-60 (3 seksi × 60 = 180)
+  durationSec: number;
+  autoSubmitted: boolean;
+}
+
+export interface JLPTRun {
+  id: string;
+  startedAt: number;
+  finishedAt: number;
+  sections: JLPTSectionResult[];
+  totalScore: number; // 0-180
+  passed: boolean;
+  passReason: string;
 }
 
 export interface NoteEntry {
@@ -45,6 +68,9 @@ export interface AppState {
   notes: NoteEntry[];
   conjugationRuns: TestRun[];
   grammarRuns: TestRun[];
+  choukaiRuns: TestRun[];
+  dokkaiRuns: TestRun[];
+  jlptRuns: JLPTRun[];
 }
 
 interface AppContextValue extends AppState {
@@ -56,6 +82,9 @@ interface AppContextValue extends AppState {
   clearHistory: () => void;
   addConjugationRun: (run: TestRun) => void;
   addGrammarRun: (run: TestRun) => void;
+  addChoukaiRun: (run: TestRun) => void;
+  addDokkaiRun: (run: TestRun) => void;
+  addJLPTRun: (run: JLPTRun) => void;
   addNote: (n: Omit<NoteEntry, "id" | "createdAt">) => void;
   updateNote: (id: string, patch: Partial<NoteEntry>) => void;
   deleteNote: (id: string) => void;
@@ -80,6 +109,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [grammarRuns, setGrammarRuns] = useState<TestRun[]>(() =>
     loadJSON<TestRun[]>(STORAGE_KEYS.grammarRuns, [])
   );
+  const [choukaiRuns, setChoukaiRuns] = useState<TestRun[]>(() =>
+    loadJSON<TestRun[]>("jepang:choukai:runs", [])
+  );
+  const [dokkaiRuns, setDokkaiRuns] = useState<TestRun[]>(() =>
+    loadJSON<TestRun[]>("jepang:dokkai:runs", [])
+  );
+  const [jlptRuns, setJLPTRuns] = useState<JLPTRun[]>(() =>
+    loadJSON<JLPTRun[]>(STORAGE_KEYS.jlptRuns, [])
+  );
 
   useEffect(() => {
     saveJSON(STORAGE_KEYS.memorized, memorized);
@@ -96,6 +134,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     saveJSON(STORAGE_KEYS.grammarRuns, grammarRuns);
   }, [grammarRuns]);
+  useEffect(() => {
+    saveJSON("jepang:choukai:runs", choukaiRuns);
+  }, [choukaiRuns]);
+  useEffect(() => {
+    saveJSON("jepang:dokkai:runs", dokkaiRuns);
+  }, [dokkaiRuns]);
+  useEffect(() => {
+    saveJSON(STORAGE_KEYS.jlptRuns, jlptRuns);
+  }, [jlptRuns]);
 
   const toggleMemorized = useCallback((globalId: string) => {
     setMemorizedState((prev) => {
@@ -136,6 +183,36 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setHistory((prev) => [run, ...prev].slice(0, 200));
   }, []);
 
+  const addChoukaiRun = useCallback((run: TestRun) => {
+    setChoukaiRuns((prev) => [run, ...prev].slice(0, 200));
+    setHistory((prev) => [run, ...prev].slice(0, 200));
+  }, []);
+
+  const addDokkaiRun = useCallback((run: TestRun) => {
+    setDokkaiRuns((prev) => [run, ...prev].slice(0, 200));
+    setHistory((prev) => [run, ...prev].slice(0, 200));
+  }, []);
+
+  const addJLPTRun = useCallback((run: JLPTRun) => {
+    setJLPTRuns((prev) => [run, ...prev].slice(0, 100));
+    const totalQuestions = run.sections.reduce((a, s) => a + s.total, 0);
+    const totalCorrect = run.sections.reduce((a, s) => a + s.correct, 0);
+    const durationSec = Math.max(1, Math.round((run.finishedAt - run.startedAt) / 1000));
+    const summary: TestRun = {
+      id: run.id,
+      kind: "jlpt",
+      variant: run.passed ? "LULUS" : "TIDAK LULUS",
+      startedAt: run.startedAt,
+      finishedAt: run.finishedAt,
+      total: totalQuestions,
+      correct: totalCorrect,
+      timePerQuestionSec: Math.round(durationSec / Math.max(1, totalQuestions)),
+      avgAnswerMs: Math.round((durationSec * 1000) / Math.max(1, totalQuestions)),
+      pages: [`${run.totalScore}/180`],
+    };
+    setHistory((prev) => [summary, ...prev].slice(0, 200));
+  }, []);
+
   const addNote = useCallback((n: Omit<NoteEntry, "id" | "createdAt">) => {
     setNotes((prev) => [
       {
@@ -164,6 +241,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setNotes([]);
     setConjugationRuns([]);
     setGrammarRuns([]);
+    setChoukaiRuns([]);
+    setDokkaiRuns([]);
+    setJLPTRuns([]);
   }, []);
 
   const value = useMemo<AppContextValue>(
@@ -173,6 +253,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       notes,
       conjugationRuns,
       grammarRuns,
+      choukaiRuns,
+      dokkaiRuns,
+      jlptRuns,
       totalWords: TOTAL_WORDS,
       toggleMemorized,
       setMemorized,
@@ -181,6 +264,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       clearHistory,
       addConjugationRun,
       addGrammarRun,
+      addChoukaiRun,
+      addDokkaiRun,
+      addJLPTRun,
       addNote,
       updateNote,
       deleteNote,
@@ -192,6 +278,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       notes,
       conjugationRuns,
       grammarRuns,
+      choukaiRuns,
+      dokkaiRuns,
+      jlptRuns,
       toggleMemorized,
       setMemorized,
       isMemorized,
@@ -199,6 +288,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       clearHistory,
       addConjugationRun,
       addGrammarRun,
+      addChoukaiRun,
+      addDokkaiRun,
+      addJLPTRun,
       addNote,
       updateNote,
       deleteNote,

@@ -26,12 +26,20 @@ import { TOTAL_WORDS, VOCAB_SECTIONS } from "../data/vocab";
 const COLORS = ["#e5e5e5", "#a3a3a3", "#737373", "#525252", "#404040"];
 
 export default function Statistics() {
-  const { memorized, history, clearHistory } = useApp();
+  const { memorized, history, clearHistory, jlptRuns } = useApp();
   const memCount = Object.keys(memorized).length;
   const pct = TOTAL_WORDS > 0 ? Math.round((memCount / TOTAL_WORDS) * 100) : 0;
 
   const [filter, setFilter] = useState<
-    "all" | "mc" | "typing" | "sentence" | "konjugasi" | "grammar"
+    | "all"
+    | "mc"
+    | "typing"
+    | "sentence"
+    | "konjugasi"
+    | "grammar"
+    | "choukai"
+    | "dokkai"
+    | "jlpt"
   >("all");
   const filteredHistory = useMemo(
     () => (filter === "all" ? history : history.filter((h) => h.kind === filter)),
@@ -257,6 +265,161 @@ export default function Statistics() {
         </div>
       </section>
 
+      {/* Simulasi JLPT */}
+      <section className="jp-card rounded-2xl p-5">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-wider text-neutral-400">
+              Simulasi JLPT N4
+            </h2>
+            <p className="mt-1 text-xs text-neutral-500">
+              Riwayat percobaan + tren total skor (0-180) dan skor per seksi.
+            </p>
+          </div>
+          <span className="rounded-md border border-white/10 px-2 py-0.5 text-xs text-neutral-300">
+            {jlptRuns.length} percobaan
+          </span>
+        </div>
+
+        {jlptRuns.length === 0 ? (
+          <p className="py-10 text-center text-sm text-neutral-500">
+            Belum ada percobaan simulasi JLPT.
+          </p>
+        ) : (
+          <>
+            <div className="mb-5 h-56 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart
+                  data={jlptRuns
+                    .slice(0, 12)
+                    .reverse()
+                    .map((r, i) => {
+                      const goi = r.sections.find((s) => s.id === "goi");
+                      const bd = r.sections.find(
+                        (s) => s.id === "bunpou-dokkai"
+                      );
+                      const ch = r.sections.find((s) => s.id === "choukai");
+                      return {
+                        idx: i + 1,
+                        label: new Date(r.finishedAt).toLocaleDateString(
+                          "id-ID",
+                          { day: "2-digit", month: "short" }
+                        ),
+                        total: r.totalScore,
+                        goi: goi?.score ?? 0,
+                        bunpouDokkai: bd?.score ?? 0,
+                        choukai: ch?.score ?? 0,
+                      };
+                    })}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="#262626" />
+                  <XAxis dataKey="label" stroke="#737373" fontSize={11} />
+                  <YAxis stroke="#737373" fontSize={11} domain={[0, 180]} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#0a0a0a",
+                      border: "1px solid #262626",
+                      borderRadius: 8,
+                      fontSize: 12,
+                    }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="total"
+                    name="Total /180"
+                    stroke="#e5e5e5"
+                    strokeWidth={2}
+                    dot
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="goi"
+                    name="Goi /60"
+                    stroke="#a3a3a3"
+                    strokeDasharray="4 4"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="bunpouDokkai"
+                    name="Bunpou+Dokkai /60"
+                    stroke="#737373"
+                    strokeDasharray="4 4"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="choukai"
+                    name="Choukai /60"
+                    stroke="#525252"
+                    strokeDasharray="4 4"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-sm">
+                <thead>
+                  <tr className="border-b border-white/10 text-left text-xs uppercase tracking-wider text-neutral-500">
+                    <th className="py-2 pr-3">Tanggal</th>
+                    <th className="py-2 pr-3">Status</th>
+                    <th className="py-2 pr-3">Total</th>
+                    <th className="py-2 pr-3">Goi</th>
+                    <th className="py-2 pr-3">Bunpou+Dokkai</th>
+                    <th className="py-2 pr-3">Choukai</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {jlptRuns.slice(0, 12).map((r) => {
+                    const goi = r.sections.find((s) => s.id === "goi");
+                    const bd = r.sections.find(
+                      (s) => s.id === "bunpou-dokkai"
+                    );
+                    const ch = r.sections.find((s) => s.id === "choukai");
+                    return (
+                      <tr
+                        key={r.id}
+                        className="border-b border-white/5 last:border-0"
+                      >
+                        <td className="py-3 pr-3 text-neutral-300">
+                          {new Date(r.finishedAt).toLocaleString("id-ID", {
+                            day: "2-digit",
+                            month: "short",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </td>
+                        <td className="py-3 pr-3">
+                          <span
+                            className={`rounded-md border px-2 py-0.5 text-xs ${
+                              r.passed
+                                ? "border-emerald-400/40 text-emerald-200"
+                                : "border-rose-400/40 text-rose-200"
+                            }`}
+                          >
+                            {r.passed ? "LULUS" : "TIDAK"}
+                          </span>
+                        </td>
+                        <td className="py-3 pr-3 text-neutral-100">
+                          {r.totalScore}/180
+                        </td>
+                        <td className="py-3 pr-3 text-neutral-300">
+                          {goi?.score ?? "-"}/60
+                        </td>
+                        <td className="py-3 pr-3 text-neutral-300">
+                          {bd?.score ?? "-"}/60
+                        </td>
+                        <td className="py-3 pr-3 text-neutral-300">
+                          {ch?.score ?? "-"}/60
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
+      </section>
+
       {/* History list */}
       <section className="jp-card rounded-2xl p-5">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
@@ -271,6 +434,9 @@ export default function Statistics() {
               ["sentence", "Susun Kalimat"],
               ["konjugasi", "Konjugasi"],
               ["grammar", "Tata Bahasa"],
+              ["choukai", "Choukai"],
+              ["dokkai", "Dokkai"],
+              ["jlpt", "Simulasi JLPT"],
             ] as const).map(([k, label]) => (
               <button
                 key={k}
@@ -341,6 +507,12 @@ export default function Statistics() {
                             ? "Konjugasi"
                             : r.kind === "grammar"
                             ? "Tata Bahasa"
+                            : r.kind === "choukai"
+                            ? "Choukai"
+                            : r.kind === "dokkai"
+                            ? "Dokkai"
+                            : r.kind === "jlpt"
+                            ? `Simulasi JLPT (${r.variant})`
                             : `Susun L${r.level}`}
                         </span>
                       </td>
