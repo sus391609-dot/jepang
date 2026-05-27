@@ -153,7 +153,7 @@ export default function Dokkai() {
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
             <BookOpen size={14} /> Tes Dokkai
           </div>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight">
+          <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
             Dokkai N4 — Reading
           </h1>
           <p className="mt-2 text-neutral-400">
@@ -212,17 +212,17 @@ export default function Dokkai() {
           </div>
         </div>
 
-        <section className="jp-card space-y-3 rounded-2xl p-6">
-          <div className="flex items-start justify-between gap-3">
-            <div>
+        <section className="jp-card space-y-3 rounded-2xl p-4 sm:p-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0">
               <p className="text-xs uppercase tracking-wider text-neutral-500">
                 {currentPassage.level} &middot; Passage
               </p>
-              <h2 className="text-jp text-xl font-semibold">
+              <h2 className="text-jp text-lg font-semibold sm:text-xl">
                 {currentPassage.title}
               </h2>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
                 onClick={() => setShowRomaji((v) => !v)}
@@ -234,7 +234,7 @@ export default function Dokkai() {
               <SpeakButton text={currentPassage.bodyKanji} rate={0.9} />
             </div>
           </div>
-          <p className="text-jp text-base leading-relaxed text-neutral-100">
+          <p className="text-jp text-base leading-relaxed text-neutral-100 sm:text-lg">
             {currentPassage.bodyKanji}
           </p>
           {showRomaji && (
@@ -244,7 +244,7 @@ export default function Dokkai() {
           )}
         </section>
 
-        <section className="jp-card space-y-3 rounded-2xl p-5">
+        <section className="jp-card space-y-3 rounded-2xl p-4 sm:p-5">
           <p className="text-sm font-medium text-neutral-200">
             {currentQuestion.q}
           </p>
@@ -265,7 +265,7 @@ export default function Dokkai() {
                   type="button"
                   disabled={revealed}
                   onClick={() => submitAnswer(i)}
-                  className={`rounded-xl border px-4 py-3 text-left text-sm transition ${stateClass}`}
+                  className={`min-h-[48px] rounded-xl border px-4 py-3 text-left text-sm transition ${stateClass}`}
                 >
                   {opt}
                 </button>
@@ -312,7 +312,7 @@ export default function Dokkai() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-3xl font-bold tracking-tight">Hasil Dokkai</h1>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Hasil Dokkai</h1>
         <p className="mt-2 text-neutral-400">
           {correctCount} dari {results.length} benar &middot; {pct}%
         </p>

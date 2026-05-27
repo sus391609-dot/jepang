@@ -30,7 +30,7 @@ export default function Grammar() {
         </div>
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Tata Bahasa N4</h1>
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Tata Bahasa N4</h1>
             <p className="mt-2 text-neutral-400">
               {GRAMMAR_TOTAL} pola tata bahasa untuk JLPT N4 (+ beberapa pola N5 yang sering muncul).
             </p>

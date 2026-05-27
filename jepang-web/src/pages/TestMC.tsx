@@ -248,7 +248,7 @@ export default function TestMC() {
               type="button"
               onClick={() => submitAnswer(i)}
               disabled={revealed}
-              className={`flex items-center justify-between rounded-2xl border px-5 py-4 text-left transition ${cls}`}
+              className={`flex min-h-[56px] items-center justify-between rounded-2xl border px-4 py-3.5 text-left transition sm:px-5 sm:py-4 ${cls}`}
             >
               <span className={direction === "arti-to-kanji" ? "text-jp text-xl font-medium" : "text-base"}>
                 {opt}
@@ -345,7 +345,7 @@ function ConfigView({
         <ArrowLeft size={14} /> Kembali
       </Link>
       <header>
-        <h1 className="text-3xl font-bold tracking-tight">Tes Pilihan Ganda</h1>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Tes Pilihan Ganda</h1>
         <p className="mt-2 text-neutral-400">
           Pilih halaman yang ingin diuji, atur jumlah soal, waktu per soal, dan arah pertanyaan.
         </p>
@@ -423,7 +423,7 @@ function ResultView({
       </Link>
       <header>
         <p className="text-xs uppercase tracking-wider text-neutral-500">Hasil</p>
-        <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{title}</h1>
       </header>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">

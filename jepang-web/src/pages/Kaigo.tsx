@@ -9,7 +9,7 @@ export default function Kaigo() {
         <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-neutral-500">
           <HeartPulse size={14} /> Modul Kaigo
         </div>
-        <h1 className="mt-1 text-3xl font-bold tracking-tight">Bahasa Jepang Kaigo (介護)</h1>
+        <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">Bahasa Jepang Kaigo (介護)</h1>
         <p className="mt-2 max-w-2xl text-neutral-400">
           Kosakata khusus perawatan lansia. Diurutkan dari yang paling sering
           dipakai di lapangan: anggota tubuh, organ tubuh, kemudian aktivitas
@@ -25,7 +25,7 @@ export default function Kaigo() {
         {KAIGO_MODULES.map((mod) => (
           <article
             key={mod.id}
-            className="jp-card jp-card-hover flex flex-col gap-5 rounded-2xl p-6"
+            className="jp-card jp-card-hover flex flex-col gap-5 rounded-2xl p-5 sm:p-6"
           >
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">

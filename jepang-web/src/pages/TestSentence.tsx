@@ -162,7 +162,7 @@ export default function TestSentence() {
           <ArrowLeft size={14} /> Kembali
         </Link>
         <header>
-          <h1 className="text-3xl font-bold tracking-tight">Tes Susun Kalimat</h1>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Tes Susun Kalimat</h1>
           <p className="mt-2 text-neutral-400">
             5 level kesulitan, 2 mode: arti → kanji dan arti → romaji. Pilih minimal{" "}
             {MIN_PAGES} halaman untuk memulai.
@@ -322,7 +322,7 @@ export default function TestSentence() {
         </Link>
         <header>
           <p className="text-xs uppercase tracking-wider text-neutral-500">Hasil</p>
-          <h1 className="text-3xl font-bold tracking-tight">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Susun Kalimat (Level {level})
           </h1>
         </header>

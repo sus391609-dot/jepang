@@ -31,20 +31,20 @@ export default function Home() {
   return (
     <div className="space-y-10">
       {/* Hero */}
-      <section className="jp-card relative overflow-hidden rounded-3xl p-8 md:p-12">
+      <section className="jp-card relative overflow-hidden rounded-3xl p-6 sm:p-8 md:p-12">
         <div className="absolute -right-12 -top-12 h-56 w-56 rounded-full bg-white/5 blur-3xl" />
         <div className="absolute -bottom-10 -left-10 h-56 w-56 rounded-full bg-white/5 blur-3xl" />
         <div className="relative space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
             <Sparkles size={14} /> 日本語 Learning Hub
           </div>
-          <h1 className="text-jp text-3xl font-bold leading-tight break-words sm:text-4xl lg:text-5xl">
+          <h1 className="text-jp text-2xl font-bold leading-tight break-words sm:text-3xl md:text-4xl lg:text-5xl">
             Belajar Bahasa Jepang{" "}
             <span className="bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">
               dengan cara yang menyenangkan
             </span>
           </h1>
-          <p className="max-w-2xl text-neutral-400 md:text-lg">
+          <p className="max-w-2xl text-sm text-neutral-400 sm:text-base md:text-lg">
             Hafalkan {TOTAL_WORDS.toLocaleString("id-ID")} kosakata, latih ingatan dengan tes
             pilihan ganda &amp; mengetik, dan susun kalimat dalam 5 tingkat kesulitan.
           </p>

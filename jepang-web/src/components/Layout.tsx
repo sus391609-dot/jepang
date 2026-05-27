@@ -122,7 +122,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <main className="min-h-screen w-full min-w-0 flex-1">
           {/* Top bar: mobile always shows hamburger; desktop only shows when sidebar hidden */}
           <div
-            className={`sticky top-0 z-20 flex items-center justify-between border-b border-white/5 bg-neutral-950/70 px-4 py-3 backdrop-blur ${
+            className={`safe-area-top sticky top-0 z-20 flex items-center justify-between border-b border-white/5 bg-neutral-950/70 px-4 py-3 backdrop-blur ${
               desktopHidden ? "" : "md:hidden"
             }`}
           >
