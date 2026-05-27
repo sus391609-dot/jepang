@@ -63,7 +63,7 @@ function SectionIndex() {
   return (
     <div className="space-y-6">
       <header className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Kosakata</h1>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Kosakata</h1>
         <p className="text-neutral-400">
           Pilih kategori, lalu pilih halaman. Setiap halaman berisi hingga 30 kosakata.
         </p>

@@ -142,7 +142,7 @@ export default function Choukai() {
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
             <Headphones size={14} /> Tes Choukai
           </div>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight">
+          <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
             Choukai N4 — Listening
           </h1>
           <p className="mt-2 text-neutral-400">
@@ -209,8 +209,8 @@ export default function Choukai() {
           </div>
         </div>
 
-        <section className="jp-card space-y-4 rounded-2xl p-6">
-          <div className="flex items-center gap-3">
+        <section className="jp-card space-y-4 rounded-2xl p-4 sm:p-6">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <button
               type="button"
               onClick={play}
@@ -249,10 +249,10 @@ export default function Choukai() {
                 type="button"
                 disabled={revealed}
                 onClick={() => submitAnswer(i)}
-                className={`rounded-2xl border px-5 py-4 text-left transition ${stateClass}`}
+                className={`min-h-[56px] rounded-2xl border px-4 py-3.5 text-left transition sm:px-5 sm:py-4 ${stateClass}`}
               >
                 {opt.kanji && (
-                  <p className="text-jp text-lg font-semibold">{opt.kanji}</p>
+                  <p className="text-jp text-base font-semibold sm:text-lg">{opt.kanji}</p>
                 )}
                 <p className="text-sm text-neutral-300">{opt.arti}</p>
               </button>
@@ -306,7 +306,7 @@ export default function Choukai() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-3xl font-bold tracking-tight">Hasil Choukai</h1>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Hasil Choukai</h1>
         <p className="mt-2 text-neutral-400">
           {correctCount} dari {results.length} benar &middot; {pct}%
         </p>

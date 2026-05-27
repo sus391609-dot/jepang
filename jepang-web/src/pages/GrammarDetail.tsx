@@ -38,8 +38,8 @@ export default function GrammarDetail() {
         <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
           <BookOpenCheck size={14} /> {pattern.level}
         </div>
-        <div className="flex items-center gap-3">
-          <h1 className="text-jp text-4xl font-bold tracking-tight md:text-5xl">
+        <div className="flex flex-wrap items-center gap-3">
+          <h1 className="text-jp text-3xl font-bold tracking-tight break-words sm:text-4xl md:text-5xl">
             {pattern.pattern}
           </h1>
           <SpeakButton text={pattern.pattern.replace(/〜/g, "")} iconSize={18} />
@@ -58,7 +58,7 @@ export default function GrammarDetail() {
         </div>
       </header>
 
-      <section className="jp-card rounded-2xl p-6">
+      <section className="jp-card rounded-2xl p-4 sm:p-6">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-neutral-400">
           Pembentukan
         </h2>
@@ -67,7 +67,7 @@ export default function GrammarDetail() {
         </p>
       </section>
 
-      <section className="jp-card rounded-2xl p-6">
+      <section className="jp-card rounded-2xl p-4 sm:p-6">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-neutral-400">
           Penjelasan
         </h2>
@@ -84,7 +84,7 @@ export default function GrammarDetail() {
           {pattern.examples.map((ex, i) => (
             <article
               key={i}
-              className="jp-card flex items-start justify-between gap-3 rounded-2xl p-5"
+              className="jp-card flex items-start justify-between gap-3 rounded-2xl p-4 sm:p-5"
             >
               <div className="min-w-0 flex-1 space-y-1">
                 <p className="text-jp text-lg leading-relaxed text-neutral-100 break-words">

@@ -173,7 +173,7 @@ export default function Conjugation() {
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
             <Wand2 size={14} /> Drill Konjugasi
           </div>
-          <h1 className="text-3xl font-bold tracking-tight">Konjugasi Kata Kerja</h1>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Konjugasi Kata Kerja</h1>
           <p className="text-neutral-400">
             Ketik konjugasi bentuk yang diminta dari kata kerja yang ditampilkan.
             Untuk huruf Jepang, gunakan IME (mis. Google IME / fcitx-mozc) atau
@@ -336,12 +336,12 @@ export default function Conjugation() {
           </div>
         </div>
 
-        <section className="jp-card rounded-2xl p-6">
+        <section className="jp-card rounded-2xl p-4 sm:p-6">
           <p className="text-xs uppercase tracking-wider text-neutral-500">
             {FORM_LABELS[q.form]}
           </p>
           <div className="mt-2 flex items-center gap-3">
-            <span className="text-jp text-4xl font-bold leading-tight">
+            <span className="text-jp text-3xl font-bold leading-tight sm:text-4xl">
               {q.verb.dict}
             </span>
             <SpeakButton text={q.verb.dict} iconSize={16} />
@@ -439,7 +439,7 @@ export default function Conjugation() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-3xl font-bold tracking-tight">Hasil Drill Konjugasi</h1>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Hasil Drill Konjugasi</h1>
         <p className="mt-2 text-neutral-400">
           {correctCount} dari {results.length} benar &middot; {pct}%
         </p>

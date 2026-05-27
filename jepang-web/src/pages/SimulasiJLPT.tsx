@@ -396,7 +396,7 @@ export default function SimulasiJLPT() {
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
             <ClipboardCheck size={14} /> Simulasi JLPT N4
           </div>
-          <h1 className="text-3xl font-bold tracking-tight">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
             Simulasi JLPT N4 — Penuh
           </h1>
           <p className="text-neutral-400">
@@ -544,19 +544,19 @@ export default function SimulasiJLPT() {
     const meta = SECTION_ORDER[sectionIdx];
     return (
       <div className="space-y-6">
-        {/* Header: timer + progress */}
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <p className="text-xs uppercase tracking-wider text-neutral-500">
-              Seksi {sectionIdx + 1} dari {SECTION_ORDER.length}
-            </p>
-            <h2 className="text-lg font-semibold text-neutral-100">
-              {meta.label}
-            </h2>
-          </div>
-          <div className="flex items-center gap-3">
+        {/* Header: timer + progress — sticky on mobile so timer always visible */}
+        <div className="sticky top-[58px] z-10 -mx-4 border-b border-white/5 bg-neutral-950/85 px-4 py-3 backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-0">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="min-w-0">
+              <p className="text-[10px] uppercase tracking-wider text-neutral-500 sm:text-xs">
+                Seksi {sectionIdx + 1} dari {SECTION_ORDER.length}
+              </p>
+              <h2 className="truncate text-base font-semibold text-neutral-100 sm:text-lg">
+                {meta.label}
+              </h2>
+            </div>
             <div
-              className={`inline-flex items-center gap-2 rounded-xl border px-3 py-1.5 text-sm font-mono ${
+              className={`inline-flex shrink-0 items-center gap-1.5 rounded-xl border px-2.5 py-1.5 font-mono text-sm tabular-nums sm:gap-2 sm:px-3 ${
                 secLeft <= 60
                   ? "border-rose-400/40 bg-rose-400/10 text-rose-200"
                   : "border-white/10 bg-white/5 text-neutral-200"
@@ -653,7 +653,7 @@ export default function SimulasiJLPT() {
         <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
           <Trophy size={14} /> Hasil Simulasi JLPT N4
         </div>
-        <h1 className="text-3xl font-bold tracking-tight">
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
           {passed ? "LULUS" : "TIDAK LULUS"}
         </h1>
         <p className="text-neutral-400">
@@ -754,12 +754,12 @@ function GoiSection({
           Dijawab: {answered}/{questions.length}
         </span>
       </div>
-      <section className="jp-card space-y-3 rounded-2xl p-5">
+      <section className="jp-card space-y-3 rounded-2xl p-4 sm:p-5">
         <p className="text-xs uppercase tracking-wider text-neutral-500">
           {q.prompt}
         </p>
         {q.subPrompt && (
-          <p className="text-jp text-2xl font-semibold">{q.subPrompt}</p>
+          <p className="text-jp text-xl font-semibold sm:text-2xl">{q.subPrompt}</p>
         )}
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {q.options.map((opt, i) => {
@@ -769,7 +769,7 @@ function GoiSection({
                 key={i}
                 type="button"
                 onClick={() => setAnswer(innerIdx, i)}
-                className={`rounded-xl border px-4 py-3 text-left text-sm transition ${
+                className={`min-h-[48px] rounded-xl border px-4 py-3 text-left text-sm transition ${
                   chosen
                     ? "border-white/40 bg-white/10 text-white"
                     : "border-white/10 hover:border-white/30 hover:bg-white/5 text-neutral-200"
@@ -872,13 +872,13 @@ function BunpouQuestion({
 }) {
   const ex = q.pattern.examples[q.exampleIndex];
   return (
-    <section className="jp-card space-y-3 rounded-2xl p-5">
+    <section className="jp-card space-y-3 rounded-2xl p-4 sm:p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1 space-y-1">
           <p className="text-xs uppercase tracking-wider text-neutral-500">
             Pola apa yang dipakai pada kalimat berikut?
           </p>
-          <p className="text-jp text-xl font-semibold leading-relaxed">
+          <p className="text-jp text-lg font-semibold leading-relaxed sm:text-xl">
             {ex.kanji}
           </p>
           <p className="text-xs text-neutral-400">{ex.romaji}</p>
@@ -893,7 +893,7 @@ function BunpouQuestion({
               key={opt}
               type="button"
               onClick={() => onChoose(i)}
-              className={`text-jp rounded-xl border px-4 py-3 text-left text-base transition ${
+              className={`text-jp min-h-[48px] rounded-xl border px-4 py-3 text-left text-base transition ${
                 isChosen
                   ? "border-white/40 bg-white/10 text-white"
                   : "border-white/10 hover:border-white/30 hover:bg-white/5 text-neutral-200"
@@ -922,17 +922,17 @@ function DokkaiQuestion({
   toggleRomaji: () => void;
 }) {
   return (
-    <section className="jp-card space-y-3 rounded-2xl p-5">
+    <section className="jp-card space-y-3 rounded-2xl p-4 sm:p-5">
       {q.isFirstOfPassage ? (
-        <div className="rounded-xl border border-white/5 bg-white/5 p-4">
-          <div className="flex items-start justify-between gap-3">
-            <div>
+        <div className="rounded-xl border border-white/5 bg-white/5 p-3 sm:p-4">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+            <div className="min-w-0">
               <p className="text-xs uppercase tracking-wider text-neutral-500">
                 {q.passageLevel} &middot; Passage {q.passageIndex + 1}
               </p>
-              <h3 className="text-jp text-lg font-semibold">{q.passageTitle}</h3>
+              <h3 className="text-jp text-base font-semibold sm:text-lg">{q.passageTitle}</h3>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
                 onClick={toggleRomaji}
@@ -965,7 +965,7 @@ function DokkaiQuestion({
               key={i}
               type="button"
               onClick={() => onChoose(i)}
-              className={`rounded-xl border px-4 py-3 text-left text-sm transition ${
+              className={`min-h-[48px] rounded-xl border px-4 py-3 text-left text-sm transition ${
                 isChosen
                   ? "border-white/40 bg-white/10 text-white"
                   : "border-white/10 hover:border-white/30 hover:bg-white/5 text-neutral-200"
@@ -1023,8 +1023,8 @@ function ChoukaiSection({
         </span>
       </div>
 
-      <section className="jp-card space-y-3 rounded-2xl p-5">
-        <div className="flex items-center gap-3">
+      <section className="jp-card space-y-3 rounded-2xl p-4 sm:p-5">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           <button
             type="button"
             onClick={handlePlay}
@@ -1051,7 +1051,7 @@ function ChoukaiSection({
               key={i}
               type="button"
               onClick={() => setAnswer(innerIdx, i)}
-              className={`rounded-xl border px-4 py-3 text-left transition ${
+              className={`min-h-[56px] rounded-xl border px-4 py-3 text-left transition ${
                 isChosen
                   ? "border-white/40 bg-white/10 text-white"
                   : "border-white/10 hover:border-white/30 hover:bg-white/5 text-neutral-200"
@@ -1086,31 +1086,34 @@ interface NavProps {
 function SectionNav({ innerIdx, total, setInnerIdx, onSubmit }: NavProps) {
   const last = innerIdx >= total - 1;
   return (
-    <div className="flex flex-wrap items-center justify-between gap-2">
+    <div
+      className="sticky bottom-0 z-10 -mx-4 flex flex-wrap items-center justify-between gap-2 border-t border-white/5 bg-neutral-950/90 px-4 py-3 backdrop-blur sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-0"
+      style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))" }}
+    >
       <button
         type="button"
         onClick={() => setInnerIdx(Math.max(0, innerIdx - 1))}
         disabled={innerIdx === 0}
-        className="inline-flex items-center gap-1 rounded-xl border border-white/15 px-4 py-2 text-sm text-neutral-300 hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-50"
+        className="inline-flex items-center gap-1 rounded-xl border border-white/15 px-3 py-2 text-sm text-neutral-300 hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-50 sm:px-4"
       >
-        <ArrowLeft size={14} /> Sebelumnya
+        <ArrowLeft size={14} /> <span className="hidden sm:inline">Sebelumnya</span><span className="sm:hidden">Prev</span>
       </button>
       <div className="flex items-center gap-2">
         {!last && (
           <button
             type="button"
             onClick={() => setInnerIdx(Math.min(total - 1, innerIdx + 1))}
-            className="inline-flex items-center gap-1 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-200"
+            className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-200 sm:px-4"
           >
-            Selanjutnya <ArrowRight size={14} />
+            <span className="hidden sm:inline">Selanjutnya</span><span className="sm:hidden">Next</span> <ArrowRight size={14} />
           </button>
         )}
         <button
           type="button"
           onClick={onSubmit}
-          className="inline-flex items-center gap-2 rounded-xl border border-emerald-400/40 bg-emerald-400/10 px-4 py-2 text-sm font-semibold text-emerald-100 hover:bg-emerald-400/20"
+          className="inline-flex items-center gap-2 rounded-xl border border-emerald-400/40 bg-emerald-400/10 px-3 py-2 text-sm font-semibold text-emerald-100 hover:bg-emerald-400/20 sm:px-4"
         >
-          <CheckCircle2 size={14} /> Kumpulkan seksi
+          <CheckCircle2 size={14} /> <span className="hidden sm:inline">Kumpulkan seksi</span><span className="sm:hidden">Kumpulkan</span>
         </button>
       </div>
     </div>

@@ -56,20 +56,20 @@ export default function Tests() {
         <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
           <GraduationCap size={14} /> Tes &amp; Latihan
         </div>
-        <h1 className="text-3xl font-bold tracking-tight">Pilih Jenis Tes</h1>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Pilih Jenis Tes</h1>
         <p className="text-neutral-400">
           Setiap tes bisa kamu sesuaikan: pilih halaman, jumlah soal, dan waktu per soal.
         </p>
       </header>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {TESTS.map((t) => {
           const Icon = t.icon;
           return (
             <Link
               key={t.to}
               to={t.to}
-              className="jp-card jp-card-hover flex flex-col justify-between rounded-2xl p-6"
+              className="jp-card jp-card-hover flex flex-col justify-between rounded-2xl p-5 sm:p-6"
             >
               <div>
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-neutral-900">

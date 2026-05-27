@@ -51,7 +51,7 @@ export default function Notes() {
   return (
     <div className="space-y-8">
       <header>
-        <h1 className="text-3xl font-bold tracking-tight">Catatan Harian</h1>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Catatan Harian</h1>
         <p className="mt-2 text-neutral-400">
           Catat progres dan target belajar setiap harinya. Tersimpan otomatis di
           peramban kamu.

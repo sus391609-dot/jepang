@@ -155,7 +155,7 @@ export default function GrammarTest() {
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-neutral-300">
             <BookOpenCheck size={14} /> Tes Tata Bahasa
           </div>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight">Lengkapi Kalimat — Pilihan Ganda</h1>
+          <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">Lengkapi Kalimat — Pilihan Ganda</h1>
           <p className="mt-2 text-neutral-400">
             Anda akan ditunjukkan kalimat contoh. Pilih pola tata bahasa yang
             membentuk kalimat tersebut dari 4 pilihan.
@@ -209,12 +209,12 @@ export default function GrammarTest() {
           </div>
         </div>
 
-        <section className="jp-card flex items-start justify-between gap-3 rounded-2xl p-6">
+        <section className="jp-card flex items-start justify-between gap-3 rounded-2xl p-4 sm:p-6">
           <div className="min-w-0 flex-1 space-y-2">
             <p className="text-xs uppercase tracking-wider text-neutral-500">
               Pola apa yang dipakai pada kalimat berikut?
             </p>
-            <p className="text-jp text-2xl font-semibold leading-relaxed text-neutral-50 break-words">
+            <p className="text-jp text-xl font-semibold leading-relaxed text-neutral-50 break-words sm:text-2xl">
               {ex.kanji}
             </p>
             <p className="text-sm text-neutral-400">{ex.romaji}</p>
@@ -240,7 +240,7 @@ export default function GrammarTest() {
                 type="button"
                 disabled={revealed}
                 onClick={() => submitAnswer(i)}
-                className={`text-jp rounded-2xl border px-5 py-4 text-left text-lg transition ${stateClass}`}
+                className={`text-jp min-h-[56px] rounded-2xl border px-4 py-3.5 text-left text-base transition sm:px-5 sm:py-4 sm:text-lg ${stateClass}`}
               >
                 {opt}
               </button>
@@ -283,7 +283,7 @@ export default function GrammarTest() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-3xl font-bold tracking-tight">Hasil Tes Tata Bahasa</h1>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Hasil Tes Tata Bahasa</h1>
         <p className="mt-2 text-neutral-400">
           {correctCount} dari {results.length} benar &middot; {pct}%
         </p>

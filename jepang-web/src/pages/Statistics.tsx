@@ -116,7 +116,7 @@ export default function Statistics() {
   return (
     <div className="space-y-8">
       <header>
-        <h1 className="text-3xl font-bold tracking-tight">Statistik</h1>
+        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Statistik</h1>
         <p className="mt-2 text-neutral-400">
           Pantau progres hafalan, akurasi, dan kecepatan kamu.
         </p>
@@ -153,7 +153,7 @@ export default function Statistics() {
 
       {/* Charts */}
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <div className="jp-card rounded-2xl p-5 lg:col-span-2">
+        <div className="jp-card rounded-2xl p-4 sm:p-5 lg:col-span-2">
           <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-400">
             Tren akurasi &amp; kecepatan
           </h2>
@@ -198,7 +198,7 @@ export default function Statistics() {
           )}
         </div>
 
-        <div className="jp-card rounded-2xl p-5">
+        <div className="jp-card rounded-2xl p-4 sm:p-5">
           <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-400">
             Hafalan keseluruhan
           </h2>
@@ -234,21 +234,21 @@ export default function Statistics() {
       </section>
 
       {/* Section progress bar */}
-      <section className="jp-card rounded-2xl p-5">
+      <section className="jp-card rounded-2xl p-4 sm:p-5">
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-neutral-400">
           Hafalan per kategori
         </h2>
         <div className="h-80 w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={perSection} layout="vertical">
+            <BarChart data={perSection} layout="vertical" margin={{ left: 0, right: 8 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#262626" />
               <XAxis type="number" stroke="#737373" fontSize={11} />
               <YAxis
                 dataKey="label"
                 type="category"
                 stroke="#737373"
-                fontSize={11}
-                width={130}
+                fontSize={10}
+                width={110}
               />
               <Tooltip
                 contentStyle={{
@@ -266,7 +266,7 @@ export default function Statistics() {
       </section>
 
       {/* Simulasi JLPT */}
-      <section className="jp-card rounded-2xl p-5">
+      <section className="jp-card rounded-2xl p-4 sm:p-5">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-sm font-semibold uppercase tracking-wider text-neutral-400">
@@ -421,7 +421,7 @@ export default function Statistics() {
       </section>
 
       {/* History list */}
-      <section className="jp-card rounded-2xl p-5">
+      <section className="jp-card rounded-2xl p-4 sm:p-5">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-neutral-400">
             Riwayat tes
@@ -564,7 +564,7 @@ function StatCard({
   accent?: boolean;
 }) {
   return (
-    <div className="jp-card rounded-2xl p-5">
+    <div className="jp-card rounded-2xl p-4 sm:p-5">
       <div className="flex items-center justify-between">
         <p className="text-xs uppercase tracking-wider text-neutral-500">{label}</p>
         <span

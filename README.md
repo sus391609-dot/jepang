@@ -91,6 +91,43 @@ npm run build    # build untuk produksi (output: dist/)
 npm run lint
 ```
 
+## Memasang sebagai aplikasi (PWA)
+
+Aplikasi ini sudah dikemas sebagai **Progressive Web App** sehingga bisa
+dipasang seperti aplikasi native di HP & desktop, jalan offline, dan punya
+ikon sendiri di home screen / menu aplikasi.
+
+### Android (HP)
+
+1. Buka URL aplikasi di **Chrome** (atau Edge / Samsung Internet).
+2. Tunggu beberapa detik. Banner "Pasang aplikasi" akan muncul di bagian
+   bawah layar — ketuk **Pasang**.
+3. Jika banner tidak muncul: ketuk menu titik tiga di pojok kanan atas →
+   **Tambahkan ke layar Utama** / **Install app**.
+4. Ikon 日本語 Hub akan muncul di home screen seperti aplikasi biasa. Buka
+   dari ikon — aplikasi jalan full-screen tanpa address bar.
+
+### Linux Mint Cinnamon (desktop)
+
+1. Buka URL aplikasi di **Chrome**, **Chromium**, **Brave**, atau **Edge**
+   (Firefox saat ini belum mendukung instalasi PWA di Linux).
+2. Klik ikon **Install** di sebelah kanan address bar (ikon komputer dengan
+   panah), atau buka menu titik tiga → **Cast, save, and share** → **Install
+   日本語 Hub…**.
+3. Cinnamon akan otomatis membuatkan shortcut di menu aplikasi (kategori
+   *Education* / *Other*). Buka dari menu — aplikasi muncul sebagai window
+   sendiri, terpisah dari tab browser.
+4. Untuk membuat shortcut tambahan di desktop, klik kanan di menu aplikasi
+   → *Add to desktop*.
+
+### Fitur offline
+
+- Setelah dipasang (atau dibuka sekali online), semua kosakata, soal,
+  passage, dan asset disimpan ke service worker dan tersedia tanpa koneksi.
+- Notifikasi **"Siap dipakai offline"** muncul saat cache pertama berhasil.
+- Saat ada versi baru yang dideploy, notifikasi **"Versi baru tersedia"**
+  akan muncul dengan tombol *Muat ulang* untuk update tanpa kehilangan data.
+
 ## Regenerasi data
 
 ```bash

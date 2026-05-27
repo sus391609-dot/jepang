@@ -226,7 +226,7 @@ export default function KaigoTestMC() {
           <p className="text-xs uppercase tracking-wider text-neutral-500">
             {mod.emoji} {mod.label}
           </p>
-          <h1 className="text-3xl font-bold tracking-tight">Tes Pilihan Ganda Kaigo</h1>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Tes Pilihan Ganda Kaigo</h1>
           <p className="mt-2 text-neutral-400">
             Pilih kategori kosakata yang ingin diuji, atur jumlah soal, waktu per soal, dan
             arah pertanyaan.
@@ -411,7 +411,7 @@ export default function KaigoTestMC() {
         </Link>
         <header>
           <p className="text-xs uppercase tracking-wider text-neutral-500">Hasil</p>
-          <h1 className="text-3xl font-bold tracking-tight">Tes Pilihan Ganda Kaigo</h1>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Tes Pilihan Ganda Kaigo</h1>
         </header>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
