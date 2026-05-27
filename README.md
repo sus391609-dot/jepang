@@ -4,6 +4,17 @@ Aplikasi web untuk belajar bahasa Jepang dengan ~1.500 kosakata level N4,
 ribuan kalimat untuk Tes Susun Kalimat 5 level, dan beberapa jenis tes.
 Dibangun dengan React + TypeScript + Vite + Tailwind CSS.
 
+## Download APK Android (offline)
+
+Versi Android tersedia di halaman **Releases**:
+
+- **Halaman Release:** <https://github.com/sus391609-dot/jepang/releases/tag/v1.0.0>
+- **Download langsung:** <https://github.com/sus391609-dot/jepang/releases/download/v1.0.0/nihongo-hub-debug.apk> (4.83 MB)
+
+APK ini berjalan **100% offline** setelah install. Min Android 7.0. Cara install
+lengkap (dengan screenshot) ada di [`CARA_INSTAL_HP_VISUAL.md`](./CARA_INSTAL_HP_VISUAL.md)
+atau versi text [`CARA_INSTAL_HP.md`](./CARA_INSTAL_HP.md).
+
 ## Fitur utama
 
 - **Kartu kosakata (flashcards)**: 12 kategori, maksimum 30 kata per halaman,
